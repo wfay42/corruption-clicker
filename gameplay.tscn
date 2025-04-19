@@ -40,3 +40,4 @@ position = Vector2(601, 0)
 [connection signal="pressed" from="corruption_button" to="_hidden_value_controller" method="_on_corruption_button_pressed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="corruption_label" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="upgrades" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="item_activated" from="upgrades" to="upgrades" method="_on_item_activated"]

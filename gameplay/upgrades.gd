@@ -14,13 +14,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _add_item(upgrade_name: String) -> void:
-	add_item(upgrade_name)
-	show()
+func _add_item(upgrade_name: String, metadata: Dictionary) -> void:
+	var idx = add_item(upgrade_name)
+	set_item_metadata(idx, metadata)
+	if not visible:
+		show()
 
 func _on__hidden_value_controller_corruption_changed(new_corruption: Variant) -> void:
 	for upgrade_name in _upgrades.keys():
 		var upgrade_cost = _upgrades[upgrade_name]
 		if upgrade_cost <= new_corruption:
-			_add_item(upgrade_name)
+			var metadata = {"cost": upgrade_cost}
+			_add_item(upgrade_name, metadata)
 			_upgrades.erase(upgrade_name)
+
+
+func _on_item_activated(index: int) -> void:
+	var metadata = get_item_metadata(index)
+	var cost = metadata["cost"]
+	remove_item(index)
