@@ -3,3 +3,5 @@
 /android/
 icon.svg
 icon.svg.import
+*.translation
+*.tmp
