@@ -1,5 +1,17 @@
 extends ItemList
 
+"""
+class UpgradeDescription
+	int id
+	String name
+	float cost
+	func whatItDoes - necessitates a way to run all of these functions at runtime
+
+List of all upgrades
+	Immutable Dictionary
+	Maps numerical IDs to Upgrade object
+"""
+
 var _upgrades = {
 	"Increase Corruption production": 15	
 }
