@@ -28,19 +28,41 @@ script = ExtResource("1_n4psk")
 position = Vector2(601, 0)
 
 [node name="Upgrades Label" type="Label" parent="."]
-offset_left = 300.0
-offset_top = 2.0
-offset_right = 374.0
-offset_bottom = 25.0
+offset_left = 439.0
+offset_top = 42.0
+offset_right = 513.0
+offset_bottom = 65.0
 text = "Upgrades"
 
 [node name="upgrades" type="ItemList" parent="Upgrades Label"]
+layout_mode = 0
 offset_top = 30.0
 offset_right = 313.0
-offset_bottom = 421.0
+offset_bottom = 70.0
+auto_height = true
 max_columns = 2
 same_column_width = true
 script = ExtResource("4_xuee5")
+
+[node name="Purchase Label" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 48.0
+offset_right = 67.0
+offset_bottom = 71.0
+text = "Workers"
+
+[node name="workers_cost_list" type="ItemList" parent="Purchase Label"]
+offset_left = 216.0
+offset_top = 24.0
+offset_right = 422.0
+offset_bottom = 64.0
+auto_height = true
+
+[node name="workers_list" type="ItemList" parent="Purchase Label"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 206.0
+offset_bottom = 64.0
 
 [connection signal="pressed" from="corruption_button" to="_hidden_value_controller" method="_on_corruption_button_pressed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="corruption_label" method="_on__hidden_value_controller_corruption_changed"]

@@ -4,15 +4,19 @@ const DOLLAR_IDX = 0
 const LABOR_IDX = 1
 const MIGHT_IDX = 2
 
+static var DOLLAR = Currency.new(DOLLAR_IDX, "Dollars", "Money.")
+static var LABOR = Currency.new(LABOR_IDX, "Labor", "How much stuff you can make.")
+static var MIGHT = Currency.new(MIGHT_IDX, "Might", "How powerful you are.")
+
 var _currencies
 
 var _currency_values
 
 func _init():
 	_currencies = {}
-	_currencies[DOLLAR_IDX] = Currency.new(DOLLAR_IDX, "Dollars", "Money.")
-	_currencies[LABOR_IDX] = Currency.new(LABOR_IDX, "Labor", "How much stuff you can make.")
-	_currencies[MIGHT_IDX] = Currency.new(MIGHT_IDX, "Might", "How powerful you are.")
+	_currencies[DOLLAR_IDX] = DOLLAR
+	_currencies[LABOR_IDX] = LABOR
+	_currencies[MIGHT_IDX] = MIGHT
 	
 	_currency_values = {}
 	for currency_idx in _currencies.keys():
