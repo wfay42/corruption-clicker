@@ -19,6 +19,12 @@ func set_base(base: float) -> void:
 	_base = base
 func set_multiplier(multiplier: float) -> void:
 	_multiplier = multiplier
+	
+func add_to_base(add: float) -> void:
+	_base += add
+	
+func add_to_multiplier(add: float) -> void:
+	_multiplier += add
 
 func calculate_value(delta: float = 1.0) -> float:
 	return _base * _multiplier * delta

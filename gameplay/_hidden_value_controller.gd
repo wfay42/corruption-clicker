@@ -22,11 +22,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_currency_tracker.add_dollars(_corruption_per_second * delta)
+	_currency_tracker.update(delta)
 	emit_signal(CORRUPTION_CHANGED_NAME, _currency_tracker.get_dollars())
 
 func _on_corruption_button_pressed() -> void:
-	_currency_tracker.add_dollars(_corruption_click_value)
+	# TODO: actually want this button to increment by 1, not update the rate,
+	# but I did this to make sure the currencytracker was working
+	_currency_tracker.get_dollar_rate().add_to_base(1)
 	
 	# NOTE: we do not emit the CORRUPTION_CHANGED_NAME signal here because it
 	# gets emitted after every _process call

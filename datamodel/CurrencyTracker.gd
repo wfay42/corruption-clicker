@@ -36,6 +36,9 @@ func get_currency_amount(currency_idx: int) -> float:
 
 func get_currency_description(currency_idx: int) -> Currency:
 	return _currencies[currency_idx]
+	
+func get_currency_rate(currency_idx: int) -> CurrencyRate:
+	return _currency_rates[currency_idx]
 
 ## Convenience functions for easier typing, which is OK since there's currently
 ## Only three currency types
@@ -52,6 +55,13 @@ func get_labor() -> float:
 	return get_currency_amount(LABOR_IDX)
 func get_might() -> float:
 	return get_currency_amount(MIGHT_IDX)
+	
+func get_dollar_rate() -> CurrencyRate:
+	return get_currency_rate(DOLLAR_IDX)
+func get_labor_rate() -> CurrencyRate:
+	return get_currency_rate(LABOR_IDX)
+func get_might_rate() -> CurrencyRate:
+	return get_currency_rate(MIGHT_IDX)
 	
 func update(delta: float) -> void:
 	"""
