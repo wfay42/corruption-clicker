@@ -10,7 +10,7 @@
 [node name="corruption_button" type="Button" parent="."]
 offset_right = 8.0
 offset_bottom = 8.0
-text = "Create 1 Corruption"
+text = "Create 1 Labor"
 script = ExtResource("1_ej4tk")
 
 [node name="corruption_label" type="Label" parent="."]

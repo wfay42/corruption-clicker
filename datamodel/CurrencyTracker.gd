@@ -8,9 +8,9 @@ static var DOLLAR = Currency.new(DOLLAR_IDX, "Dollars", "Money.")
 static var LABOR = Currency.new(LABOR_IDX, "Labor", "How much stuff you can make.")
 static var MIGHT = Currency.new(MIGHT_IDX, "Might", "How powerful you are.")
 
-var _currencies
-
-var _currency_values
+var _currencies: Dictionary[int, Currency]
+var _currency_values: Dictionary[int, float]
+var _currency_rates: Dictionary[int, CurrencyRate]
 
 func _init():
 	_currencies = {}
@@ -20,7 +20,8 @@ func _init():
 	
 	_currency_values = {}
 	for currency_idx in _currencies.keys():
-		_currency_values[currency_idx] = 0
+		_currency_values[currency_idx] = 0.0
+		_currency_rates[currency_idx] = CurrencyRate.new(0.0, 1.0)
 
 func add_currency_amount(currency_idx: int, amount: float) -> float:
 	"""
@@ -51,3 +52,11 @@ func get_labor() -> float:
 	return get_currency_amount(LABOR_IDX)
 func get_might() -> float:
 	return get_currency_amount(MIGHT_IDX)
+	
+func update(delta: float) -> void:
+	"""
+	Update the current currencies based on the currency rates times the time delta
+	"""
+	for currency_idx in _currencies.keys():
+		var value = _currency_rates[currency_idx].calculate_value(delta)
+		add_currency_amount(currency_idx, value)
