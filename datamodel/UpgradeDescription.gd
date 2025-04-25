@@ -13,9 +13,9 @@ var _name: String
 var _cost
 var _multiplier
 	
-func _init(id: int, name: String, cost: int):
+func _init(id: int, name: String, cost: int, multiplier: float = 1.0):
 	_id = id
 	_name = name
 	_cost = cost
-	_multiplier = 1.0
+	_multiplier = multiplier
 	
