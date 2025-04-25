@@ -10,12 +10,21 @@ class UpgradeDescription
 	
 var _id: int
 var _name: String
-var _cost
-var _multiplier
+var _description: String
+var _costs: Array[Cost]
+var _rate_change: CurrencyRate
 	
-func _init(id: int, name: String, cost: int, multiplier: float = 1.0):
+func _init(id: int, name: String, description: String, costs: Array[Cost], rate_change: CurrencyRate):
 	_id = id
 	_name = name
-	_cost = cost
-	_multiplier = multiplier
-	
+	_description = description
+	_costs = costs
+	_rate_change = rate_change
+
+func stringify_costs(intify: bool = true) -> String:
+	var string_arr = PackedStringArray()
+	for cost: Cost in _costs:
+		var amount = str(int(cost._amount) if intify else cost._amount)
+		var s = amount + " " + str(cost._currency._name)
+		string_arr.append(s)
+	return ", ".join(string_arr)

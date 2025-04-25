@@ -1,4 +1,10 @@
 class_name CurrencyTracker extends Object
+"""
+Tracks a few things
+- The defined currencies
+- Rate of currency growth
+- Currency in your wallet
+"""
 
 enum CurrencyId {DOLLAR_ID, LABOR_ID, MIGHT_ID}
 

@@ -9,8 +9,8 @@ var _corruption_click_value = 1.0
 var _corruption_per_second = 5.0
 
 var _currency_tracker: CurrencyTracker
-var _upgrade_list: UpgradeDict
-var _worker_list: UpgradeDict
+var _upgrade_dict: UpgradeDict
+var _worker_dict: UpgradeDict
 
 func update_corruption_rate() -> void:
 	pass
@@ -18,8 +18,8 @@ func update_corruption_rate() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_currency_tracker = CurrencyTracker.new()
-	_upgrade_list = UpgradeDict.new()
-	_worker_list = UpgradeDict.new()
+	_upgrade_dict = UpgradeDict.new()
+	_worker_dict = WorkerUpgradeDict.create()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

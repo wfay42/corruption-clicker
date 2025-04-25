@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3dcf6es0d0o"]
+[gd_scene load_steps=6 format=3 uid="uid://dp3dcf6es0d0o"]
 
 [ext_resource type="Script" uid="uid://cfv3bac06gfmt" path="res://gameplay/corruption_button.gd" id="1_ej4tk"]
 [ext_resource type="Script" uid="uid://cs2wiqy3hyys7" path="res://gameplay/_hidden_value_controller.gd" id="1_n4psk"]
 [ext_resource type="Script" uid="uid://bt3127ingukst" path="res://gameplay/corruption_label.gd" id="2_oe8ih"]
 [ext_resource type="Script" uid="uid://b551sv03nnphp" path="res://gameplay/upgrades.gd" id="4_xuee5"]
+[ext_resource type="Script" uid="uid://dvcn10sq258q7" path="res://workers_list.gd" id="5_smepj"]
 
 [node name="Gameplay" type="Node2D"]
 
@@ -53,17 +54,18 @@ text = "Workers"
 
 [node name="workers_cost_list" type="ItemList" parent="Purchase Label"]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 24.0
-offset_right = 422.0
-offset_bottom = 64.0
+offset_left = 218.0
+offset_top = 102.0
+offset_right = 424.0
+offset_bottom = 142.0
 auto_height = true
 
 [node name="workers_list" type="ItemList" parent="Purchase Label"]
 layout_mode = 0
 offset_top = 24.0
-offset_right = 206.0
+offset_right = 419.0
 offset_bottom = 64.0
+script = ExtResource("5_smepj")
 
 [connection signal="pressed" from="corruption_button" to="_hidden_value_controller" method="_on_corruption_button_pressed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="corruption_label" method="_on__hidden_value_controller_corruption_changed"]
