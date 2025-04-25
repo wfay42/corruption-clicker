@@ -52,6 +52,7 @@ offset_bottom = 71.0
 text = "Workers"
 
 [node name="workers_cost_list" type="ItemList" parent="Purchase Label"]
+layout_mode = 0
 offset_left = 216.0
 offset_top = 24.0
 offset_right = 422.0

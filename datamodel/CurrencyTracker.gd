@@ -1,29 +1,27 @@
 class_name CurrencyTracker extends Object
 
-const DOLLAR_IDX = 0
-const LABOR_IDX = 1
-const MIGHT_IDX = 2
+enum CurrencyId {DOLLAR_ID, LABOR_ID, MIGHT_ID}
 
-static var DOLLAR = Currency.new(DOLLAR_IDX, "Dollars", "Money.")
-static var LABOR = Currency.new(LABOR_IDX, "Labor", "How much stuff you can make.")
-static var MIGHT = Currency.new(MIGHT_IDX, "Might", "How powerful you are.")
+static var DOLLAR = Currency.new(CurrencyId.DOLLAR_ID, "Dollars", "Money.")
+static var LABOR = Currency.new(CurrencyId.LABOR_ID, "Labor", "How much stuff you can make.")
+static var MIGHT = Currency.new(CurrencyId.MIGHT_ID, "Might", "How powerful you are.")
 
-var _currencies: Dictionary[int, Currency]
-var _currency_values: Dictionary[int, float]
-var _currency_rates: Dictionary[int, CurrencyRate]
+var _currencies: Dictionary[CurrencyId, Currency]
+var _currency_values: Dictionary[CurrencyId, float]
+var _currency_rates: Dictionary[CurrencyId, CurrencyRate]
 
 func _init():
 	_currencies = {}
-	_currencies[DOLLAR_IDX] = DOLLAR
-	_currencies[LABOR_IDX] = LABOR
-	_currencies[MIGHT_IDX] = MIGHT
+	_currencies[CurrencyId.DOLLAR_ID] = DOLLAR
+	_currencies[CurrencyId.LABOR_ID] = LABOR
+	_currencies[CurrencyId.MIGHT_ID] = MIGHT
 	
 	_currency_values = {}
 	for currency_idx in _currencies.keys():
 		_currency_values[currency_idx] = 0.0
 		_currency_rates[currency_idx] = CurrencyRate.new(0.0, 1.0)
 
-func add_currency_amount(currency_idx: int, amount: float) -> float:
+func add_currency_amount(currency_idx: CurrencyId, amount: float) -> float:
 	"""
 	Returns the amount after adding
 	"""
@@ -43,25 +41,25 @@ func get_currency_rate(currency_idx: int) -> CurrencyRate:
 ## Convenience functions for easier typing, which is OK since there's currently
 ## Only three currency types
 func add_dollars(amount: float) -> float:
-	return add_currency_amount(DOLLAR_IDX, amount)
+	return add_currency_amount(CurrencyId.DOLLAR_ID, amount)
 func add_labor(amount: float) -> float:
-	return add_currency_amount(LABOR_IDX, amount)
+	return add_currency_amount(CurrencyId.LABOR_ID, amount)
 func add_might(amount: float) -> float:
-	return add_currency_amount(MIGHT_IDX, amount)
+	return add_currency_amount(CurrencyId.MIGHT_ID, amount)
 	
 func get_dollars() -> float:
-	return get_currency_amount(DOLLAR_IDX)
+	return get_currency_amount(CurrencyId.DOLLAR_ID)
 func get_labor() -> float:
-	return get_currency_amount(LABOR_IDX)
+	return get_currency_amount(CurrencyId.LABOR_ID)
 func get_might() -> float:
-	return get_currency_amount(MIGHT_IDX)
+	return get_currency_amount(CurrencyId.MIGHT_ID)
 	
 func get_dollar_rate() -> CurrencyRate:
-	return get_currency_rate(DOLLAR_IDX)
+	return get_currency_rate(CurrencyId.DOLLAR_ID)
 func get_labor_rate() -> CurrencyRate:
-	return get_currency_rate(LABOR_IDX)
+	return get_currency_rate(CurrencyId.LABOR_ID)
 func get_might_rate() -> CurrencyRate:
-	return get_currency_rate(MIGHT_IDX)
+	return get_currency_rate(CurrencyId.MIGHT_ID)
 	
 func update(delta: float) -> void:
 	"""
