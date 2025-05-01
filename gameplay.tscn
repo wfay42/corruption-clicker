@@ -8,19 +8,60 @@
 
 [node name="Gameplay" type="Node2D"]
 
-[node name="corruption_button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Create 1 Labor"
-script = ExtResource("1_ej4tk")
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(194, 0)
 
-[node name="corruption_label" type="Label" parent="."]
-offset_left = 201.0
-offset_top = 4.0
-offset_right = 241.0
-offset_bottom = 27.0
+[node name="labor_label" type="Label" parent="Node2D"]
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 35.0
+text = "Labor"
+script = ExtResource("2_oe8ih")
+
+[node name="labor_value_label" type="Label" parent="Node2D/labor_label"]
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 23.0
 text = "0"
 script = ExtResource("2_oe8ih")
+
+[node name="dollar_label" type="Label" parent="Node2D"]
+offset_left = 7.0
+offset_top = 38.0
+offset_right = 52.0
+offset_bottom = 61.0
+text = "Dollars"
+script = ExtResource("2_oe8ih")
+
+[node name="dollar_value_label" type="Label" parent="Node2D/dollar_label"]
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 23.0
+text = "0"
+script = ExtResource("2_oe8ih")
+
+[node name="might_label" type="Label" parent="Node2D"]
+offset_left = 7.0
+offset_top = 66.0
+offset_right = 62.0
+offset_bottom = 89.0
+text = "Might"
+script = ExtResource("2_oe8ih")
+
+[node name="might_value_label" type="Label" parent="Node2D/might_label"]
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 23.0
+text = "0"
+script = ExtResource("2_oe8ih")
+
+[node name="corruption_button" type="Button" parent="."]
+offset_top = 15.0
+offset_right = 122.0
+offset_bottom = 46.0
+text = "Create 1 Labor"
+script = ExtResource("1_ej4tk")
 
 [node name="_hidden_value_controller" type="Node2D" parent="."]
 script = ExtResource("1_n4psk")
@@ -30,16 +71,16 @@ position = Vector2(601, 0)
 
 [node name="Upgrades Label" type="Label" parent="."]
 offset_left = 439.0
-offset_top = 42.0
+offset_top = 134.0
 offset_right = 513.0
-offset_bottom = 65.0
+offset_bottom = 157.0
 text = "Upgrades"
 
 [node name="upgrades" type="ItemList" parent="Upgrades Label"]
 layout_mode = 0
-offset_top = 30.0
+offset_top = 28.0
 offset_right = 313.0
-offset_bottom = 70.0
+offset_bottom = 68.0
 auto_height = true
 max_columns = 2
 same_column_width = true
@@ -47,9 +88,9 @@ script = ExtResource("4_xuee5")
 
 [node name="Purchase Label" type="Label" parent="."]
 offset_left = 2.0
-offset_top = 48.0
+offset_top = 138.0
 offset_right = 67.0
-offset_bottom = 71.0
+offset_bottom = 161.0
 text = "Workers"
 
 [node name="workers_cost_list" type="ItemList" parent="Purchase Label"]
@@ -68,6 +109,6 @@ offset_bottom = 64.0
 script = ExtResource("5_smepj")
 
 [connection signal="pressed" from="corruption_button" to="_hidden_value_controller" method="_on_corruption_button_pressed"]
-[connection signal="corruption_changed" from="_hidden_value_controller" to="corruption_label" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="corruption_changed" from="_hidden_value_controller" to="Node2D/labor_label/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="Upgrades Label/upgrades" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="item_activated" from="Upgrades Label/upgrades" to="Upgrades Label/upgrades" method="_on_item_activated"]
