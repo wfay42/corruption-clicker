@@ -22,6 +22,11 @@ func _init(id: int, name: String, description: String, costs: Array[Cost], rate_
 	_rate_change = rate_change
 
 func stringify_costs(intify: bool = true) -> String:
+	"""
+	Example output
+	"5 Dollars"
+	"5 Dollars, 1 Labor"
+	"""
 	var string_arr = PackedStringArray()
 	for cost: Cost in _costs:
 		var amount = str(int(cost._amount) if intify else cost._amount)

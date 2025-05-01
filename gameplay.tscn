@@ -1,67 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp3dcf6es0d0o"]
+[gd_scene load_steps=7 format=3 uid="uid://dp3dcf6es0d0o"]
 
 [ext_resource type="Script" uid="uid://cfv3bac06gfmt" path="res://gameplay/corruption_button.gd" id="1_ej4tk"]
 [ext_resource type="Script" uid="uid://cs2wiqy3hyys7" path="res://gameplay/_hidden_value_controller.gd" id="1_n4psk"]
+[ext_resource type="Script" uid="uid://biljhknkwpxqq" path="res://gameplay/dollar_value_label.gd" id="2_cbffv"]
 [ext_resource type="Script" uid="uid://bt3127ingukst" path="res://gameplay/corruption_label.gd" id="2_oe8ih"]
 [ext_resource type="Script" uid="uid://b551sv03nnphp" path="res://gameplay/upgrades.gd" id="4_xuee5"]
 [ext_resource type="Script" uid="uid://dvcn10sq258q7" path="res://workers_list.gd" id="5_smepj"]
 
 [node name="Gameplay" type="Node2D"]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="currency_parent" type="Node2D" parent="."]
 position = Vector2(194, 0)
 
-[node name="labor_label" type="Label" parent="Node2D"]
+[node name="labor_label" type="Label" parent="currency_parent"]
 offset_left = 7.0
 offset_top = 12.0
 offset_right = 52.0
 offset_bottom = 35.0
 text = "Labor"
-script = ExtResource("2_oe8ih")
 
-[node name="labor_value_label" type="Label" parent="Node2D/labor_label"]
+[node name="labor_value_label" type="Label" parent="currency_parent/labor_label"]
+layout_mode = 0
 offset_left = 60.0
 offset_right = 100.0
 offset_bottom = 23.0
 text = "0"
 script = ExtResource("2_oe8ih")
 
-[node name="dollar_label" type="Label" parent="Node2D"]
+[node name="dollar_label" type="Label" parent="currency_parent"]
 offset_left = 7.0
-offset_top = 38.0
-offset_right = 52.0
-offset_bottom = 61.0
-text = "Dollars"
-script = ExtResource("2_oe8ih")
-
-[node name="dollar_value_label" type="Label" parent="Node2D/dollar_label"]
-offset_left = 60.0
-offset_right = 100.0
-offset_bottom = 23.0
-text = "0"
-script = ExtResource("2_oe8ih")
-
-[node name="might_label" type="Label" parent="Node2D"]
-offset_left = 7.0
-offset_top = 66.0
+offset_top = 50.0
 offset_right = 62.0
-offset_bottom = 89.0
-text = "Might"
-script = ExtResource("2_oe8ih")
+offset_bottom = 73.0
+text = "Dollars"
 
-[node name="might_value_label" type="Label" parent="Node2D/might_label"]
+[node name="dollar_value_label" type="Label" parent="currency_parent/dollar_label"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 23.0
+text = "0"
+script = ExtResource("2_cbffv")
+
+[node name="might_label" type="Label" parent="currency_parent"]
+offset_left = 7.0
+offset_top = 88.0
+offset_right = 62.0
+offset_bottom = 111.0
+text = "Might"
+
+[node name="might_value_label" type="Label" parent="currency_parent/might_label"]
+layout_mode = 0
 offset_left = 60.0
 offset_right = 100.0
 offset_bottom = 23.0
 text = "0"
 script = ExtResource("2_oe8ih")
-
-[node name="corruption_button" type="Button" parent="."]
-offset_top = 15.0
-offset_right = 122.0
-offset_bottom = 46.0
-text = "Create 1 Labor"
-script = ExtResource("1_ej4tk")
 
 [node name="_hidden_value_controller" type="Node2D" parent="."]
 script = ExtResource("1_n4psk")
@@ -108,7 +102,25 @@ offset_right = 419.0
 offset_bottom = 64.0
 script = ExtResource("5_smepj")
 
-[connection signal="pressed" from="corruption_button" to="_hidden_value_controller" method="_on_corruption_button_pressed"]
-[connection signal="corruption_changed" from="_hidden_value_controller" to="Node2D/labor_label/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
+[node name="button_parent" type="Node2D" parent="."]
+
+[node name="labor_button" type="Button" parent="button_parent"]
+offset_top = 15.0
+offset_right = 122.0
+offset_bottom = 46.0
+text = "Create 1 Labor"
+script = ExtResource("1_ej4tk")
+
+[node name="dollar_button" type="Button" parent="button_parent"]
+offset_top = 47.0
+offset_right = 165.0
+offset_bottom = 78.0
+text = "Sell 1 Doll (10 Labor)"
+script = ExtResource("1_ej4tk")
+
+[connection signal="corruption_changed" from="_hidden_value_controller" to="currency_parent/labor_label/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="Upgrades Label/upgrades" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="dollars_changed" from="_hidden_value_controller" to="currency_parent/dollar_label/dollar_value_label" method="_on__hidden_value_controller_dollars_changed"]
 [connection signal="item_activated" from="Upgrades Label/upgrades" to="Upgrades Label/upgrades" method="_on_item_activated"]
+[connection signal="pressed" from="button_parent/labor_button" to="_hidden_value_controller" method="_on_labor_button_pressed"]
+[connection signal="pressed" from="button_parent/dollar_button" to="_hidden_value_controller" method="_on_dollar_button_pressed"]
