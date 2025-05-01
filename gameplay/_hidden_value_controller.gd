@@ -31,9 +31,11 @@ func _process(delta: float) -> void:
 	emit_signal(DOLLARS_CHANGED_NAME, _currency_tracker.get_dollars())
 
 func _on_labor_button_pressed() -> void:
-	# TODO: actually want this button to increment by 1, not update the rate,
+	# actually want this button to increment by 1, not update the rate,
 	# but I did this to make sure the currencytracker was working
-	_currency_tracker.get_labor_rate().add_to_base(1)
+	#_currency_tracker.get_labor_rate().add_to_base(1)
+	
+	_currency_tracker.add_labor(1)
 	
 	# NOTE: we do not emit the CORRUPTION_CHANGED_NAME signal here because it
 	# gets emitted after every _process call
