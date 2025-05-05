@@ -15,7 +15,7 @@ func _update_sprint_noop(unused: float) -> bool:
 	return false
 
 func _update_sprites(new_corruption: float) -> bool:
-	if new_corruption > 15:
+	if new_corruption >= 15:
 		texture = preload("res://img/char-arisa-02.png")
 		return true
 	return false

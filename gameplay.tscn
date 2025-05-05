@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cf4se6s33g70n" path="res://sprite_worker.gd" id="8_0m7cd"]
 
 [node name="Gameplay" type="Node2D"]
+scale = Vector2(1, 0.99875)
 
 [node name="_hidden_value_controller" type="Node2D" parent="."]
 script = ExtResource("1_n4psk")
@@ -102,7 +103,7 @@ script = ExtResource("5_smepj")
 
 [node name="sprite_worker" type="Sprite2D" parent="."]
 position = Vector2(749, 0)
-scale = Vector2(0.336706, 0.336706)
+scale = Vector2(0.563889, 0.563889)
 texture = ExtResource("5_fbudy")
 centered = false
 script = ExtResource("8_0m7cd")
