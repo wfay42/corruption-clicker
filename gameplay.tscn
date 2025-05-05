@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp3dcf6es0d0o"]
+[gd_scene load_steps=9 format=3 uid="uid://dp3dcf6es0d0o"]
 
 [ext_resource type="Script" uid="uid://cfv3bac06gfmt" path="res://gameplay/corruption_button.gd" id="1_ej4tk"]
 [ext_resource type="Script" uid="uid://cs2wiqy3hyys7" path="res://gameplay/_hidden_value_controller.gd" id="1_n4psk"]
 [ext_resource type="Script" uid="uid://biljhknkwpxqq" path="res://gameplay/dollar_value_label.gd" id="2_cbffv"]
 [ext_resource type="Script" uid="uid://bt3127ingukst" path="res://gameplay/corruption_label.gd" id="2_oe8ih"]
 [ext_resource type="Script" uid="uid://b551sv03nnphp" path="res://gameplay/upgrades.gd" id="4_xuee5"]
+[ext_resource type="Texture2D" uid="uid://cgtus08h64xb7" path="res://img/char-arisa-01.png" id="5_fbudy"]
 [ext_resource type="Script" uid="uid://dvcn10sq258q7" path="res://workers_list.gd" id="5_smepj"]
+[ext_resource type="Script" uid="uid://cf4se6s33g70n" path="res://sprite_worker.gd" id="8_0m7cd"]
 
 [node name="Gameplay" type="Node2D"]
 
@@ -59,9 +61,6 @@ layout_mode = 2
 text = "0"
 script = ExtResource("2_oe8ih")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(601, 0)
-
 [node name="Upgrades Label" type="Label" parent="."]
 offset_left = 439.0
 offset_top = 134.0
@@ -101,7 +100,15 @@ offset_right = 419.0
 offset_bottom = 64.0
 script = ExtResource("5_smepj")
 
+[node name="sprite_worker" type="Sprite2D" parent="."]
+position = Vector2(749, 0)
+scale = Vector2(0.336706, 0.336706)
+texture = ExtResource("5_fbudy")
+centered = false
+script = ExtResource("8_0m7cd")
+
 [connection signal="corruption_changed" from="_hidden_value_controller" to="currency_grid/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="corruption_changed" from="_hidden_value_controller" to="sprite_worker" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="Upgrades Label/upgrades" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="dollars_changed" from="_hidden_value_controller" to="currency_grid/dollar_value_label" method="_on__hidden_value_controller_dollars_changed"]
 [connection signal="pressed" from="button_grid/labor_button" to="_hidden_value_controller" method="_on_labor_button_pressed"]
