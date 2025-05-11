@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp3dcf6es0d0o"]
+[gd_scene load_steps=12 format=3 uid="uid://dp3dcf6es0d0o"]
 
 [ext_resource type="Script" uid="uid://cfv3bac06gfmt" path="res://gameplay/corruption_button.gd" id="1_ej4tk"]
 [ext_resource type="Script" uid="uid://cs2wiqy3hyys7" path="res://gameplay/_hidden_value_controller.gd" id="1_n4psk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://b551sv03nnphp" path="res://gameplay/upgrades.gd" id="4_xuee5"]
 [ext_resource type="Texture2D" uid="uid://cgtus08h64xb7" path="res://img/char-arisa-01.png" id="5_fbudy"]
 [ext_resource type="Script" uid="uid://dvcn10sq258q7" path="res://workers_list.gd" id="5_smepj"]
+[ext_resource type="Texture2D" uid="uid://b5k7227hbhr7f" path="res://img/char-arisa-02.png" id="7_2ihbs"]
+[ext_resource type="Texture2D" uid="uid://sbxs54udrpef" path="res://img/1080x1920.png" id="7_45aep"]
+[ext_resource type="Texture2D" uid="uid://wtsl12yjb2sy" path="res://img/1080x2120feather.png" id="7_tyrfw"]
 [ext_resource type="Script" uid="uid://cf4se6s33g70n" path="res://sprite_worker.gd" id="8_0m7cd"]
 
 [node name="Gameplay" type="Node2D"]
@@ -101,16 +104,34 @@ offset_right = 419.0
 offset_bottom = 64.0
 script = ExtResource("5_smepj")
 
-[node name="sprite_worker" type="Sprite2D" parent="."]
-position = Vector2(749, 0)
-scale = Vector2(0.563889, 0.563889)
+[node name="bg_worker_2" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(783, -2.38419e-07)
+scale = Vector2(0.559984, 0.559984)
+texture = ExtResource("7_45aep")
+centered = false
+
+[node name="sprite_worker_2" type="Sprite2D" parent="bg_worker_2"]
+texture = ExtResource("7_2ihbs")
+centered = false
+metadata/second_phase = false
+
+[node name="mask_worker" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(783, -2.38419e-07)
+scale = Vector2(0.559984, 0.559984)
+texture = ExtResource("7_tyrfw")
+centered = false
+
+[node name="sprite_worker" type="Sprite2D" parent="mask_worker"]
 texture = ExtResource("5_fbudy")
 centered = false
 script = ExtResource("8_0m7cd")
+metadata/second_phase = false
 
 [connection signal="corruption_changed" from="_hidden_value_controller" to="currency_grid/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
-[connection signal="corruption_changed" from="_hidden_value_controller" to="sprite_worker" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="Upgrades Label/upgrades" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="corruption_changed" from="_hidden_value_controller" to="mask_worker/sprite_worker" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="dollars_changed" from="_hidden_value_controller" to="currency_grid/dollar_value_label" method="_on__hidden_value_controller_dollars_changed"]
 [connection signal="pressed" from="button_grid/labor_button" to="_hidden_value_controller" method="_on_labor_button_pressed"]
 [connection signal="pressed" from="button_grid/dollar_button" to="_hidden_value_controller" method="_on_dollar_button_pressed"]
