@@ -19,6 +19,15 @@ func add(name: String, description: String, costs: Array[Cost], rate_change: Cur
 	_upgrades[id] = UpgradeDescription.new(id, name, description, costs, rate_change)
 	_nextId += 1
 
+func add_upgrade(upgrade_description: UpgradeDescription) -> void:
+	var id = _nextId
+	upgrade_description._id = id
+	_upgrades[id] = upgrade_description
+	_nextId += 1
+	
+func erase(id: int) -> bool:
+	return _upgrades.erase(id)
+
 func get_upgrades() -> Dictionary[int, UpgradeDescription]:
 	return _upgrades
 	

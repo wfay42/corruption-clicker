@@ -107,7 +107,7 @@ script = ExtResource("5_smepj")
 [node name="bg_worker_2" type="Sprite2D" parent="."]
 clip_children = 2
 position = Vector2(783, -2.38419e-07)
-scale = Vector2(0.559984, 0.559984)
+scale = Vector2(0.56, 0.56)
 texture = ExtResource("7_45aep")
 centered = false
 
@@ -119,7 +119,7 @@ metadata/second_phase = false
 [node name="mask_worker" type="Sprite2D" parent="."]
 clip_children = 2
 position = Vector2(783, -2.38419e-07)
-scale = Vector2(0.559984, 0.559984)
+scale = Vector2(0.56, 0.56)
 texture = ExtResource("7_tyrfw")
 centered = false
 
@@ -131,7 +131,9 @@ metadata/second_phase = false
 
 [connection signal="corruption_changed" from="_hidden_value_controller" to="currency_grid/labor_value_label" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="Upgrades Label/upgrades" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="corruption_changed" from="_hidden_value_controller" to="Purchase Label/workers_list" method="_on__hidden_value_controller_corruption_changed"]
 [connection signal="corruption_changed" from="_hidden_value_controller" to="mask_worker/sprite_worker" method="_on__hidden_value_controller_corruption_changed"]
+[connection signal="currency_changed" from="_hidden_value_controller" to="Purchase Label/workers_list" method="_on__hidden_value_controller_currency_changed"]
 [connection signal="dollars_changed" from="_hidden_value_controller" to="currency_grid/dollar_value_label" method="_on__hidden_value_controller_dollars_changed"]
 [connection signal="pressed" from="button_grid/labor_button" to="_hidden_value_controller" method="_on_labor_button_pressed"]
 [connection signal="pressed" from="button_grid/dollar_button" to="_hidden_value_controller" method="_on_dollar_button_pressed"]

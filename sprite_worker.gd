@@ -19,7 +19,7 @@ func _update_sprint_noop(unused: float) -> bool:
 func _update_sprites(new_corruption: float) -> bool:
 	if new_corruption >= next_level and get_meta("second_phase") == false:
 		#texture = preload("res://img/char-arisa-02.png")
-		var offset: Vector2 = Vector2.DOWN * 20
+		var offset: Vector2 = Vector2.DOWN * 50
 		global_translate(offset)
 		get_parent().global_translate(-offset)
 		next_level += 1

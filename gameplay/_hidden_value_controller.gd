@@ -6,6 +6,9 @@ const CORRUPTION_CHANGED_NAME = "corruption_changed"
 signal dollars_changed(new_dollars)
 const DOLLARS_CHANGED_NAME = "dollars_changed"
 
+signal currency_changed(new_currency_values)
+const CURRENCY_CHANGED_NAME = "currency_changed"
+
 var _total_corruption = 0.0
 
 var _corruption_click_value = 1.0
@@ -29,6 +32,7 @@ func _process(delta: float) -> void:
 	_currency_tracker.update(delta)
 	emit_signal(CORRUPTION_CHANGED_NAME, _currency_tracker.get_labor())
 	emit_signal(DOLLARS_CHANGED_NAME, _currency_tracker.get_dollars())
+	emit_signal(CURRENCY_CHANGED_NAME, _currency_tracker._currency_values)
 
 func _on_labor_button_pressed() -> void:
 	# actually want this button to increment by 1, not update the rate,
