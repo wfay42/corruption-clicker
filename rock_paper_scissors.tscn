@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc0jrijurxsj2"]
+
+[ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
+[ext_resource type="Script" uid="uid://c7plne52hia5d" path="res://gameplay/rps_label.gd" id="2_ihdnx"]
+
+[node name="RockPaperScissors" type="Node2D"]
+
+[node name="Rock" type="Button" parent="."]
+offset_right = 46.0
+offset_bottom = 31.0
+text = "Rock
+"
+script = ExtResource("1_kjh7p")
+
+[node name="Paper" type="Button" parent="."]
+offset_top = 31.0
+offset_right = 46.0
+offset_bottom = 62.0
+text = "Paper"
+script = ExtResource("1_kjh7p")
+
+[node name="Scissors" type="Button" parent="."]
+offset_top = 62.0
+offset_right = 70.0
+offset_bottom = 93.0
+text = "Scissors"
+script = ExtResource("1_kjh7p")
+
+[node name="Countdown" type="Label" parent="."]
+offset_left = 115.0
+offset_right = 232.0
+offset_bottom = 23.0
+text = "Countdown"
+
+[node name="YourInput" type="Label" parent="Countdown"]
+offset_top = 23.0
+offset_right = 86.0
+offset_bottom = 46.0
+text = "YourInput"
+script = ExtResource("2_ihdnx")
+
+[node name="TheirInput" type="Label" parent="Countdown"]
+offset_left = 86.0
+offset_top = 23.0
+offset_right = 172.0
+offset_bottom = 46.0
+text = "TheirInput"
+
+[node name="Result" type="Label" parent="Countdown"]
+offset_top = 46.0
+offset_right = 117.0
+offset_bottom = 69.0
+text = "Result"
+
+[connection signal="pressed" from="Rock" to="Rock" method="_on_pressed"]
+[connection signal="pressed" from="Paper" to="Paper" method="_on_pressed"]
+[connection signal="pressed" from="Scissors" to="Scissors" method="_on_pressed"]
