@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/img
 icon.svg
 icon.svg.import
 *.translation

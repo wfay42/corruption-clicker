@@ -33,6 +33,7 @@ offset_bottom = 23.0
 text = "Countdown"
 
 [node name="YourInput" type="Label" parent="Countdown"]
+layout_mode = 0
 offset_top = 23.0
 offset_right = 86.0
 offset_bottom = 46.0
@@ -40,6 +41,7 @@ text = "YourInput"
 script = ExtResource("2_ihdnx")
 
 [node name="TheirInput" type="Label" parent="Countdown"]
+layout_mode = 0
 offset_left = 86.0
 offset_top = 23.0
 offset_right = 172.0
@@ -47,6 +49,7 @@ offset_bottom = 46.0
 text = "TheirInput"
 
 [node name="Result" type="Label" parent="Countdown"]
+layout_mode = 0
 offset_top = 46.0
 offset_right = 117.0
 offset_bottom = 69.0
