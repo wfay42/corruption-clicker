@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=4 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
+[ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
 [ext_resource type="Script" uid="uid://c7plne52hia5d" path="res://gameplay/rps_label.gd" id="2_ihdnx"]
 
 [node name="RockPaperScissors" type="Node2D"]
+
+[node name="RPSController" type="Node" parent="."]
+script = ExtResource("1_quvve")
 
 [node name="Rock" type="Button" parent="."]
 offset_right = 46.0
