@@ -47,11 +47,12 @@ func _process(_delta: float) -> void:
 func _on_rps_chosen(_value: String) -> void:
 	if __timer.is_stopped():
 		__timer.start(__timer_duration)
-		for rps_node in __rps_nodes:
-			if rps_node is RPSButton:
-				rps_node.disabled = true
+		disable_rps_buttons(true)
 
 func _on_timer_timeout() -> void:
+	disable_rps_buttons(false)
+
+func disable_rps_buttons(disabled: bool) -> void:
 	for rps_node in __rps_nodes:
 		if rps_node is RPSButton:
-			rps_node.disabled = false
+			rps_node.disabled = disabled
