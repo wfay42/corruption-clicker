@@ -6,6 +6,8 @@
 2. Displays choice
 3. Computer picks their choice randomly
 4. Countdown begins (3... 2... 1...). Speed of countdown is variable with upgrades
+  - should disable selections while waiting for timer
+  - after timer finishes, re-enable the selections
 5. Computer choice displays
 6. Decide if win
 7. If you win, gain 1 point
