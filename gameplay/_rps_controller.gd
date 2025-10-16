@@ -3,10 +3,11 @@ extends Node
 var __timer: Timer
 var __timer_duration: float
 
-var __computerChoice: Node
-var __result: Node
-var __playerChoice: String
+var __computerChoiceNode: Node
+var __resultNode: Node
 var __rps_nodes: Array[Node]
+
+var __playerChoice: String
 
 var __computerRng: RandomNumberGenerator
 
@@ -23,8 +24,8 @@ func _ready() -> void:
 	self.__computerRng = RandomNumberGenerator.new()
 	self.__computerRng.randomize()
 
-	self.__computerChoice = self.get_node("Countdown").get_node("TheirInput")
-	self.__result = self.get_node("Countdown").get_node("Result")
+	self.__computerChoiceNode = self.get_node("Countdown").get_node("TheirInput")
+	self.__resultNode = self.get_node("Countdown").get_node("Result")
 
 	self.__rps_nodes = _get_rps_nodes(self)
 
@@ -60,8 +61,8 @@ func _on_rps_chosen(value: String) -> void:
 	disable_rps_buttons(true)
 	__timer.start(__timer_duration)
 	self.__playerChoice = value
-	self.__result.text = ""
-	self.__computerChoice.text = ""
+	self.__resultNode.text = ""
+	self.__computerChoiceNode.text = ""
 
 func _on_timer_timeout() -> void:
 	"""
@@ -69,9 +70,9 @@ func _on_timer_timeout() -> void:
 	"""
 	disable_rps_buttons(false)
 	var computerChoice = _decide_computer_choice()
-	__computerChoice.text = computerChoice
+	__computerChoiceNode.text = computerChoice
 	var winner = _determine_winner(self.__playerChoice, computerChoice)
-	self.__result.text = winner
+	self.__resultNode.text = winner
 
 func disable_rps_buttons(disabled: bool) -> void:
 	"""
