@@ -38,23 +38,25 @@ text = "Countdown:"
 
 [node name="YourInput" type="Label" parent="Countdown"]
 layout_mode = 0
+offset_left = 36.0
 offset_top = 46.0
-offset_right = 86.0
+offset_right = 122.0
 offset_bottom = 69.0
 script = ExtResource("2_ihdnx")
 
 [node name="TheirInput" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_left = 101.0
+offset_left = 147.0
 offset_top = 46.0
-offset_right = 187.0
+offset_right = 233.0
 offset_bottom = 69.0
 
 [node name="Result" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_top = 93.0
-offset_right = 117.0
-offset_bottom = 116.0
+offset_left = 36.0
+offset_top = 92.0
+offset_right = 153.0
+offset_bottom = 115.0
 
 [node name="LabelYourChoice" type="Label" parent="Countdown"]
 layout_mode = 0
@@ -85,9 +87,9 @@ offset_bottom = 23.0
 script = ExtResource("4_oyv7v")
 
 [node name="Cash" type="Label" parent="."]
-offset_top = 104.0
-offset_right = 40.0
-offset_bottom = 127.0
+offset_top = 93.0
+offset_right = 42.0
+offset_bottom = 116.0
 text = "Cash:"
 
 [node name="CashValue" type="Label" parent="Cash"]
