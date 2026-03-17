@@ -1,7 +1,15 @@
 extends Node
 
+signal cash_changed(cash_value)
+const CASH_CHANGED_NAME: String = "cash_changed"
+
 const PLAYER_NAME: String = "Player"
 const COMPUTER_NAME: String = "Computer"
+const TIE_NAME: String = "Tie"
+
+const ROCK: String = "Rock"
+const PAPER: String = "Paper"
+const SCISSORS: String = "Scissors"
 
 var __timer: Timer
 var __timer_duration: float
@@ -36,9 +44,10 @@ func _ready() -> void:
 
 	self.__rps_nodes = _get_rps_nodes(self)
 
-	__cashValueNode = self.get_node("Cash").get_node("CashValue")
-
 	_connect_children(__rps_nodes)
+
+	__cashValueNode = self.get_node("Cash").get_node("CashValue")
+	cash_changed.connect(__cashValueNode._on_cash_changed)
 
 func _connect_children(rps_nodes: Array[Node]) -> void:
 	var controller = self
@@ -52,7 +61,7 @@ func _connect_children(rps_nodes: Array[Node]) -> void:
 
 func _get_rps_nodes(root: Node) -> Array[Node]:
 	var rps_nodes: Array[Node] = []
-	for rps_nodename in ["Rock", "Paper", "Scissors"]:
+	for rps_nodename in [ROCK, PAPER, SCISSORS]:
 		rps_nodes.append(root.get_node(rps_nodename))
 
 	return rps_nodes
@@ -69,7 +78,7 @@ func _on_rps_chosen(value: String) -> void:
 
 	disable_rps_buttons(true)
 	__timer.start(__timer_duration)
-	self.__playerChoice = value
+	self.__playerChoice = value.strip_edges()
 	self.__resultNode.text = ""
 	self.__computerChoiceNode.text = ""
 
@@ -99,18 +108,19 @@ func _decide_computer_choice() -> String:
 	print("Choice: %d" % choice)
 	match choice:
 		1:
-			return "Rock"
+			return ROCK
 		2:
-			return "Paper"
+			return PAPER
 		_:
-			return "Scissors"
+			return SCISSORS
 
 func _determine_winner(player_choice: String, computer_choice: String) -> String:
+	print("Player choice: %s, Computer choice: %s" % [player_choice, computer_choice])
 	if player_choice == computer_choice:
-		return "Tie"
-	elif (player_choice == "Rock" and computer_choice == "Scissors") or \
-			(player_choice == "Paper" and computer_choice == "Rock") or \
-			(player_choice == "Scissors" and computer_choice == "Paper"):
+		return TIE_NAME
+	elif (player_choice == ROCK and computer_choice == SCISSORS) or \
+			(player_choice == PAPER and computer_choice == ROCK) or \
+			(player_choice == SCISSORS and computer_choice == PAPER):
 		return PLAYER_NAME
 	else:
 		return COMPUTER_NAME
@@ -125,8 +135,7 @@ func resolve_winning_outcome(winner: String) -> void:
 		COMPUTER_NAME:
 			add_cash(-10)
 
-	# TODO: update CashValue node to receive a signal when cash changes
-	self.__cashValueNode.text = str(self.__cash_value)
+	cash_changed.emit(self.__cash_value)
 
 
 func add_cash(amount: int) -> void:
