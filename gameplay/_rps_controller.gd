@@ -3,6 +3,9 @@ extends Node
 signal cash_changed(cash_value)
 const CASH_CHANGED_NAME: String = "cash_changed"
 
+signal timer_started(timer)
+const TIMER_STARTED_NAME: String = "timer_started"
+
 const PLAYER_NAME: String = "Player"
 const COMPUTER_NAME: String = "Computer"
 const TIE_NAME: String = "Tie"
@@ -17,6 +20,7 @@ var __timer_duration: float
 var __computerChoiceNode: Node
 var __resultNode: Node
 var __rps_nodes: Array[Node]
+var __countdownLabel: Label
 
 var __cashValueNode: Label
 
@@ -39,15 +43,19 @@ func _ready() -> void:
 	self.__computerRng = RandomNumberGenerator.new()
 	self.__computerRng.randomize()
 
-	self.__computerChoiceNode = self.get_node("Countdown").get_node("TheirInput")
-	self.__resultNode = self.get_node("Countdown").get_node("Result")
+	var countdownNode = self.get_node("Countdown")
+	self.__computerChoiceNode = countdownNode.get_node("TheirInput")
+	self.__resultNode = countdownNode.get_node("Result")
 
 	self.__rps_nodes = _get_rps_nodes(self)
 
 	_connect_children(__rps_nodes)
 
-	__cashValueNode = self.get_node("Cash").get_node("CashValue")
-	cash_changed.connect(__cashValueNode._on_cash_changed)
+	self.__countdownLabel = countdownNode.get_node("CountdownValue")
+	timer_started.connect(self.__countdownLabel._on_timer_started)
+
+	self.__cashValueNode = self.get_node("Cash").get_node("CashValue")
+	cash_changed.connect(self.__cashValueNode._on_cash_changed)
 
 func _connect_children(rps_nodes: Array[Node]) -> void:
 	var controller = self
@@ -78,6 +86,7 @@ func _on_rps_chosen(value: String) -> void:
 
 	disable_rps_buttons(true)
 	__timer.start(__timer_duration)
+	timer_started.emit(__timer)
 	self.__playerChoice = value.strip_edges()
 	self.__resultNode.text = ""
 	self.__computerChoiceNode.text = ""

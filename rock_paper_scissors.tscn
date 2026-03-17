@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=6 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
 [ext_resource type="Script" uid="uid://c7plne52hia5d" path="res://gameplay/rps_label.gd" id="2_ihdnx"]
+[ext_resource type="Script" uid="uid://yd86tbu2eh2a" path="res://gameplay/countdown_label.gd" id="4_oyv7v"]
 [ext_resource type="Script" uid="uid://dntmseq78bdw4" path="res://gameplay/cash_label.gd" id="4_rancy"]
 
 [node name="RockPaperScissors" type="Node2D"]
@@ -33,30 +34,55 @@ script = ExtResource("1_kjh7p")
 offset_left = 115.0
 offset_right = 232.0
 offset_bottom = 23.0
-text = "Countdown"
+text = "Countdown:"
 
 [node name="YourInput" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_top = 23.0
+offset_top = 46.0
 offset_right = 86.0
-offset_bottom = 46.0
-text = "YourInput"
+offset_bottom = 69.0
 script = ExtResource("2_ihdnx")
 
 [node name="TheirInput" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 23.0
-offset_right = 172.0
-offset_bottom = 46.0
-text = "TheirInput"
+offset_left = 101.0
+offset_top = 46.0
+offset_right = 187.0
+offset_bottom = 69.0
 
 [node name="Result" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_top = 46.0
+offset_top = 93.0
 offset_right = 117.0
-offset_bottom = 69.0
-text = "Result"
+offset_bottom = 116.0
+
+[node name="LabelYourChoice" type="Label" parent="Countdown"]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 40.0
+offset_bottom = 46.0
+text = "Your Choice"
+
+[node name="LabelTheirChoice" type="Label" parent="Countdown"]
+offset_left = 101.0
+offset_top = 23.0
+offset_right = 197.0
+offset_bottom = 46.0
+text = "Their Choice"
+
+[node name="LabelWinner" type="Label" parent="Countdown"]
+layout_mode = 0
+offset_top = 69.0
+offset_right = 40.0
+offset_bottom = 92.0
+text = "Winner:"
+
+[node name="CountdownValue" type="Label" parent="Countdown"]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 141.0
+offset_bottom = 23.0
+script = ExtResource("4_oyv7v")
 
 [node name="Cash" type="Label" parent="."]
 offset_top = 104.0
