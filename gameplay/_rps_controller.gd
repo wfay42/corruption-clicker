@@ -1,5 +1,8 @@
 extends Node
 
+const PLAYER_NAME: String = "Player"
+const COMPUTER_NAME: String = "Computer"
+
 var __timer: Timer
 var __timer_duration: float
 
@@ -7,12 +10,16 @@ var __computerChoiceNode: Node
 var __resultNode: Node
 var __rps_nodes: Array[Node]
 
+var __cashValueNode: Label
+
 var __playerChoice: String
 
 var __computerRng: RandomNumberGenerator
+var __cash_value: int
 
 func _ready() -> void:
 	self.__timer_duration = 3.0
+	self.__cash_value = 0
 
 	self.__timer = Timer.new()
 	__timer.one_shot = true
@@ -28,6 +35,8 @@ func _ready() -> void:
 	self.__resultNode = self.get_node("Countdown").get_node("Result")
 
 	self.__rps_nodes = _get_rps_nodes(self)
+
+	__cashValueNode = self.get_node("Cash").get_node("CashValue")
 
 	_connect_children(__rps_nodes)
 
@@ -73,6 +82,9 @@ func _on_timer_timeout() -> void:
 	__computerChoiceNode.text = computerChoice
 	var winner = _determine_winner(self.__playerChoice, computerChoice)
 	self.__resultNode.text = winner
+	resolve_winning_outcome(winner)
+
+
 
 func disable_rps_buttons(disabled: bool) -> void:
 	"""
@@ -99,6 +111,23 @@ func _determine_winner(player_choice: String, computer_choice: String) -> String
 	elif (player_choice == "Rock" and computer_choice == "Scissors") or \
 			(player_choice == "Paper" and computer_choice == "Rock") or \
 			(player_choice == "Scissors" and computer_choice == "Paper"):
-		return "Player"
+		return PLAYER_NAME
 	else:
-		return "Computer"
+		return COMPUTER_NAME
+
+func resolve_winning_outcome(winner: String) -> void:
+	"""
+	Updates the cash value based on the winner of the RPS game
+	"""
+	match winner:
+		PLAYER_NAME:
+			add_cash(10)
+		COMPUTER_NAME:
+			add_cash(-10)
+
+	# TODO: update CashValue node to receive a signal when cash changes
+	self.__cashValueNode.text = str(self.__cash_value)
+
+
+func add_cash(amount: int) -> void:
+	self.__cash_value += amount

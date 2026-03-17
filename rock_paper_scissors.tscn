@@ -57,6 +57,19 @@ offset_right = 117.0
 offset_bottom = 69.0
 text = "Result"
 
+[node name="Cash" type="Label" parent="."]
+offset_top = 104.0
+offset_right = 40.0
+offset_bottom = 127.0
+text = "Cash:"
+
+[node name="CashValue" type="Label" parent="Cash"]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 94.0
+offset_bottom = 23.0
+text = "0"
+
 [connection signal="pressed" from="Rock" to="Rock" method="_on_pressed"]
 [connection signal="pressed" from="Paper" to="Paper" method="_on_pressed"]
 [connection signal="pressed" from="Scissors" to="Scissors" method="_on_pressed"]
