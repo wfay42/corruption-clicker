@@ -112,9 +112,8 @@ func disable_rps_buttons(disabled: bool) -> void:
 
 func _decide_computer_choice() -> Choices.RPSChoice:
 	var choice: int = self.__computerRng.randi_range(0, 2)
-	var retval = Choices.RPSChoice.values()[choice]
-	var str = "Choice: %d - %d" % [choice, retval]
-	print(str)
+	var retval = Choices.RPS_CHOICE_VALUES_LIST[choice]
+	print("Computer choice: %d" % [choice])
 	return retval
 
 func _determine_winner(player_choice: Choices.RPSChoice, computer_choice: Choices.RPSChoice) -> String:
