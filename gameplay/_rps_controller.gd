@@ -69,7 +69,7 @@ func _connect_children(rps_nodes: Array[Node]) -> void:
 
 func _get_rps_nodes(root: Node) -> Array[Node]:
 	var rps_nodes: Array[Node] = []
-	for rps_nodename in [ROCK, PAPER, SCISSORS]:
+	for rps_nodename in Choices.RPS_CHOICE_NAMES_LIST:
 		rps_nodes.append(root.get_node(rps_nodename))
 
 	return rps_nodes
