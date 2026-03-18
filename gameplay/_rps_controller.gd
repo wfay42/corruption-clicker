@@ -27,11 +27,11 @@ var __cashValueNode: Label
 var __playerChoice: String
 
 var __computerRng: RandomNumberGenerator
-var __cash_value: int
+var __cashManager: CashManager
 
 func _ready() -> void:
 	self.__timer_duration = 3.0
-	self.__cash_value = 0
+	self.__cashManager = CashManager.new()
 
 	self.__timer = Timer.new()
 	__timer.one_shot = true
@@ -140,12 +140,10 @@ func resolve_winning_outcome(winner: String) -> void:
 	"""
 	match winner:
 		PLAYER_NAME:
-			add_cash(10)
-		COMPUTER_NAME:
-			add_cash(-10)
+			add_cash()
 
-	cash_changed.emit(self.__cash_value)
+	cash_changed.emit(self.__cashManager.get_cash())
 
 
-func add_cash(amount: int) -> void:
-	self.__cash_value += amount
+func add_cash() -> void:
+	self.__cashManager.increment()

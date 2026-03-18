@@ -66,6 +66,7 @@ offset_bottom = 46.0
 text = "Your Choice"
 
 [node name="LabelTheirChoice" type="Label" parent="Countdown"]
+layout_mode = 0
 offset_left = 101.0
 offset_top = 23.0
 offset_right = 197.0
