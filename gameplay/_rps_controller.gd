@@ -10,10 +10,6 @@ const PLAYER_NAME: String = "Player"
 const COMPUTER_NAME: String = "Computer"
 const TIE_NAME: String = "Tie"
 
-const ROCK: String = "Rock"
-const PAPER: String = "Paper"
-const SCISSORS: String = "Scissors"
-
 var __timer: Timer
 var __timer_duration: float
 
@@ -24,13 +20,13 @@ var __countdownLabel: Label
 
 var __cashValueNode: Label
 
-var __playerChoice: String
+var __playerChoice: Choices.RPSChoice
 
 var __computerRng: RandomNumberGenerator
 var __cashManager: CashManager
 
 func _ready() -> void:
-	self.__timer_duration = 3.0
+	self.__timer_duration = 0.1
 	self.__cashManager = CashManager.new()
 
 	self.__timer = Timer.new()
@@ -87,7 +83,8 @@ func _on_rps_chosen(value: String) -> void:
 	disable_rps_buttons(true)
 	__timer.start(__timer_duration)
 	timer_started.emit(__timer)
-	self.__playerChoice = value.strip_edges()
+	var playerChoiceStr: String = value.strip_edges()
+	self.__playerChoice = Choices.get_choice_value(playerChoiceStr)
 	self.__resultNode.text = ""
 	self.__computerChoiceNode.text = ""
 
@@ -96,9 +93,10 @@ func _on_timer_timeout() -> void:
 	Called when countdown timer finishes
 	"""
 	disable_rps_buttons(false)
-	var computerChoice = _decide_computer_choice()
-	__computerChoiceNode.text = computerChoice
-	var winner = _determine_winner(self.__playerChoice, computerChoice)
+	var computerChoice: Choices.RPSChoice = _decide_computer_choice()
+	var computerChoiceStr: String = Choices.get_choice_name(computerChoice)
+	__computerChoiceNode.text = computerChoiceStr
+	var winner: String = _determine_winner(self.__playerChoice, computerChoice)
 	self.__resultNode.text = winner
 	resolve_winning_outcome(winner)
 
@@ -112,24 +110,18 @@ func disable_rps_buttons(disabled: bool) -> void:
 		if rps_node is RPSButton:
 			rps_node.disabled = disabled
 
-func _decide_computer_choice() -> String:
-	var choice = self.__computerRng.randi_range(1, 3)
-	print("Choice: %d" % choice)
-	match choice:
-		1:
-			return ROCK
-		2:
-			return PAPER
-		_:
-			return SCISSORS
+func _decide_computer_choice() -> Choices.RPSChoice:
+	var choice: int = self.__computerRng.randi_range(0, 2)
+	var retval = Choices.RPSChoice.values()[choice]
+	var str = "Choice: %d - %d" % [choice, retval]
+	print(str)
+	return retval
 
-func _determine_winner(player_choice: String, computer_choice: String) -> String:
-	print("Player choice: %s, Computer choice: %s" % [player_choice, computer_choice])
-	if player_choice == computer_choice:
+func _determine_winner(player_choice: Choices.RPSChoice, computer_choice: Choices.RPSChoice) -> String:
+	var winner: int = Choices.determine_winner(player_choice, computer_choice)
+	if winner == 0:
 		return TIE_NAME
-	elif (player_choice == ROCK and computer_choice == SCISSORS) or \
-			(player_choice == PAPER and computer_choice == ROCK) or \
-			(player_choice == SCISSORS and computer_choice == PAPER):
+	elif winner < 0:
 		return PLAYER_NAME
 	else:
 		return COMPUTER_NAME
