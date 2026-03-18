@@ -4,9 +4,6 @@ signal rps_chosen(text)
 const RPS_CHOSEN_NAME: String = "rps_chosen"
 
 func _ready() -> void:
-	## TODO: should flip this relationship around so YourInput is what says to connect to this signal
-	# var yourInput: Node = get_parent().get_node("Countdown").get_node("YourInput")
-	# rps_chosen.connect(yourInput._on_rps_button_rps_chosen)
 	pass
 
 
