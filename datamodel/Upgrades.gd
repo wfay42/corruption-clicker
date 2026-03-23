@@ -2,15 +2,21 @@ class_name Upgrades extends Object
 
 const CASH_PLUS_KEY: String = "cash+"
 const COST_KEY: String = "cost"
+const NAME_KEY: String = "name"
+const ID_KEY: String = "id"
+
+
 const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     "cash001": {
+        "id": "cash001",
         "name": "Cash Prize Lv. 1",
         "description": "Increase cash prize by 1",
-        "cost": 10,
+        "cost": 3,
         "cash+": 1,
         "dependencies": []
     },
     "cash002": {
+        "id": "cash002",
         "name": "Cash Prize Lv. 2",
         "description": "Increase cash prize by 5",
         "cost": 200,

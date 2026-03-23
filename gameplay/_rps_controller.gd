@@ -58,7 +58,7 @@ func _ready() -> void:
 
 	self.__upgrades = Upgrades.new()
 	self.__upgradeList = self.get_node("Upgrades").get_node("UpgradeList")
-	self.__upgradeList.set_upgrades(self.__upgrades)
+	self.__upgradeList.setup(self.__upgrades, CashManagerView.new(self.__cashManager))
 	self.__upgradeList.refreshList()
 
 func _connect_children(rps_nodes: Array[Node]) -> void:

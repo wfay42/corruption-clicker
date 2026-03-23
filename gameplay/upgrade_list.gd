@@ -7,12 +7,16 @@ Keep track of available upgrades in two Arrays with the same indexing
 """
 
 var _upgrades: Upgrades = null
+var _cashManager: CashManagerView = null
 
 func _ready() -> void:
 	pass
 
-func set_upgrades(upgrades: Upgrades) -> void:
+func setup(upgrades: Upgrades, cashManager: CashManagerView) -> void:
+	"""Initializes the upgrade list with the given Upgrades and CashManagerView
+	"""
 	_upgrades = upgrades
+	_cashManager = cashManager
 
 func refreshList() -> void:
 	"""Refreshes the list of upgrades based on the current state of owned upgrades
@@ -23,7 +27,7 @@ func refreshList() -> void:
 	self.clear()
 	var availableUpgrades: Array[Dictionary] = _upgrades.getAllAvailableUpgrades()
 	for upgradeData in availableUpgrades:
-		var displayText: String = "$%d - %s" % [upgradeData["cost"], upgradeData["name"]]
+		var displayText: String = "$%d - %s" % [upgradeData[Upgrades.COST_KEY], upgradeData[Upgrades.NAME_KEY]]
 		var idx = self.add_item(displayText)
 		self.set_item_metadata(idx, upgradeData)
 
@@ -33,6 +37,10 @@ func _on_item_activated(index: int) -> void:
 	var item_name: String = self.get_item_text(index)
 	print("Activated item: %s" % item_name)
 
-	# TODO: Need to implement the logic, but need to store the ID as part of the metadata
-	# var itemId: String = self.get_item_metadata(index)["name"]
-	# _upgrades.tryPurchase(itemId)
+	var upgradeData: Dictionary = self.get_item_metadata(index)
+	var upgradeId: String = upgradeData[Upgrades.ID_KEY]
+
+	var success: bool = _upgrades.tryPurchase(upgradeId, _cashManager.get_cash())
+	print("Attempted to purchase upgrade %s, success: %s" % [upgradeId, success])
+	if (success):
+		refreshList()  # Refresh the list to reflect the newly purchased upgrade
