@@ -25,6 +25,9 @@ var __playerChoice: Choices.RPSChoice
 var __computerRng: RandomNumberGenerator
 var __cashManager: CashManager
 
+var __upgrades: Upgrades
+var __upgradeList: ItemList
+
 func _ready() -> void:
 	self.__timer_duration = 0.1
 	self.__cashManager = CashManager.new()
@@ -52,6 +55,11 @@ func _ready() -> void:
 
 	self.__cashValueNode = self.get_node("Cash").get_node("CashValue")
 	cash_changed.connect(self.__cashValueNode._on_cash_changed)
+
+	self.__upgrades = Upgrades.new()
+	self.__upgradeList = self.get_node("Upgrades").get_node("UpgradeList")
+	self.__upgradeList.set_upgrades(self.__upgrades)
+	self.__upgradeList.refreshList()
 
 func _connect_children(rps_nodes: Array[Node]) -> void:
 	var controller = self

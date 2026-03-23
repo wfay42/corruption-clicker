@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=7 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
 [ext_resource type="Script" uid="uid://c7plne52hia5d" path="res://gameplay/rps_label.gd" id="2_ihdnx"]
 [ext_resource type="Script" uid="uid://yd86tbu2eh2a" path="res://gameplay/countdown_label.gd" id="4_oyv7v"]
 [ext_resource type="Script" uid="uid://dntmseq78bdw4" path="res://gameplay/cash_label.gd" id="4_rancy"]
+[ext_resource type="Script" uid="uid://bklcx3nx60sf5" path="res://gameplay/upgrade_list.gd" id="6_0mn1v"]
 
 [node name="RockPaperScissors" type="Node2D"]
 script = ExtResource("1_quvve")
@@ -101,6 +102,23 @@ offset_bottom = 23.0
 text = "0"
 script = ExtResource("4_rancy")
 
+[node name="Upgrades" type="Label" parent="."]
+offset_top = 133.0
+offset_right = 40.0
+offset_bottom = 156.0
+text = "Upgrades"
+
+[node name="UpgradeList" type="ItemList" parent="Upgrades"]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 515.0
+offset_bottom = 110.0
+item_count = 2
+item_0/text = "Option 1"
+item_1/text = "Option 2"
+script = ExtResource("6_0mn1v")
+
 [connection signal="pressed" from="Rock" to="Rock" method="_on_pressed"]
 [connection signal="pressed" from="Paper" to="Paper" method="_on_pressed"]
 [connection signal="pressed" from="Scissors" to="Scissors" method="_on_pressed"]
+[connection signal="item_activated" from="Upgrades/UpgradeList" to="Upgrades/UpgradeList" method="_on_item_activated"]
