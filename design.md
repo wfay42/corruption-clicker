@@ -41,3 +41,33 @@ Rock, Paper, and Scissors get XP for each of their own schools
 2. Rock:
 3. Paper:
 4. Scissors:
+
+### Upgrade logic
+
+```
+{
+  "skills": {
+    "001": {
+      "description": "Upgrade Cash Prize Lv. 1",
+      "cost": 10,
+      "cash+": 1,
+      "dependencies": []
+    },
+    "002": {
+      "description": "Upgrade Cash Prize Lv. 2",
+      "cost": 200,
+      "cash+": 2,
+      "dependencies": ["001"]
+    }
+  }
+}
+```
+
+1. Have full list of upgrades, including progressive upgrades
+2. Have full list of taken upgrades (or is "taken" just an attribute on above list?)
+2. On skill taken:
+  - Append skill ID to list of taken skills
+  - Emit a signal with which upgrade was taken (and list of all upgrades, and list of taken upgrades?)
+  - Subsystems (like CashManager) catch signal and record the change (such as increased value))
+  - Identify any skills whose dependencies are now satisfied, and add them to the list of "available upgrades".
+  - Update list of available upgrades, including cost
