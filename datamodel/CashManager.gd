@@ -14,3 +14,7 @@ func get_cash() -> float:
 
 func increment() -> void:
 	_cash += _cash_rate
+
+func onUpgradePurchased(upgradeId: String, upgrades: Upgrades) -> void:
+	var cashRateFromUpgrades: int = upgrades.getOwnedCashPlusUpgradeValue()
+	self._cash_rate = CASH_BASE_VALUE + cashRateFromUpgrades

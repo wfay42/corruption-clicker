@@ -25,7 +25,7 @@ const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     },
 }
 
-signal upgradePurchased(upgradeId)
+signal upgradePurchased(upgradeId, Upgrades)
 const UPGRADE_PURCHASED_NAME: String = "upgradePurchased"
 
 var _ownedUpgradeIds: Array[String]
@@ -94,5 +94,5 @@ func tryPurchase(upgradeId: String, currentCash: float) -> bool:
     _ownedUpgradeIds.append(upgradeId)
     _upgradesMutex.unlock()
 
-    upgradePurchased.emit(upgradeId)
+    upgradePurchased.emit(upgradeId, self )
     return true

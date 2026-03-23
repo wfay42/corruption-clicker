@@ -61,6 +61,8 @@ func _ready() -> void:
 	self.__upgradeList.setup(self.__upgrades, CashManagerView.new(self.__cashManager))
 	self.__upgradeList.refreshList()
 
+	self.__upgrades.upgradePurchased.connect(self.__cashManager.onUpgradePurchased)
+
 func _connect_children(rps_nodes: Array[Node]) -> void:
 	var controller = self
 	var countdown = self.get_node("Countdown")
