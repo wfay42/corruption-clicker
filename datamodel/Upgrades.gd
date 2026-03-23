@@ -1,6 +1,7 @@
 class_name Upgrades extends Object
 
 const CASH_PLUS_KEY: String = "cash+"
+const COST_KEY: String = "cost"
 const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     "cash001": {
         "name": "Cash Prize Lv. 1",
@@ -14,14 +15,19 @@ const ALL_UPGRADES: Dictionary[String, Dictionary] = {
         "description": "Increase cash prize by 5",
         "cost": 200,
         "cash+": 5,
-        "dependencies": []
+        "dependencies": ["cash001"]
     },
 }
 
+signal upgradePurchased(upgradeId)
+const UPGRADE_PURCHASED_NAME: String = "upgradePurchased"
+
 var _ownedUpgradeIds: Array[String]
+var _upgradesMutex: Mutex
 
 func _init() -> void:
     _ownedUpgradeIds = []
+    _upgradesMutex = Mutex.new()
 
 func hasUpgrade(upgradeId: String) -> bool:
     return upgradeId in _ownedUpgradeIds
@@ -48,7 +54,7 @@ func getAllAvailableUpgrades() -> Array[Dictionary]:
     return availableUpgrades
 
 func isUpgradeAvailable(upgradeId: String) -> bool:
-    """ Returns true if upgrade is not owned and all dependencies are met """
+    """ Returns true if upgrade is not owned and all dependencies are met. Does NOT check cost """
     if upgradeId in _ownedUpgradeIds:
         return false
 
@@ -61,4 +67,26 @@ func isUpgradeAvailable(upgradeId: String) -> bool:
         if dependencyId not in _ownedUpgradeIds:
             return false
 
+    return true
+
+func tryPurchase(upgradeId: String, currentCash: float) -> bool:
+    """ Attempts to purchase the upgrade with the given ID if the player has enough cash
+     Returns true if purchase is successful, false otherwise (e.g. not available or insufficient funds)
+     Note: This function does not handle deducting cash or other side effects, it only updates owned upgrades
+    """
+    var upgradeData = ALL_UPGRADES.get(upgradeId, null)
+    if not isUpgradeAvailable(upgradeId):
+        return false
+
+    var cost = upgradeData.get(COST_KEY, null)
+    if cost == null:
+        return false
+    if currentCash < cost:
+        return false
+
+    _upgradesMutex.lock()
+    _ownedUpgradeIds.append(upgradeId)
+    _upgradesMutex.unlock()
+
+    upgradePurchased.emit(upgradeId)
     return true

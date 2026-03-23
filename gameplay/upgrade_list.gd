@@ -23,11 +23,16 @@ func refreshList() -> void:
 	self.clear()
 	var availableUpgrades: Array[Dictionary] = _upgrades.getAllAvailableUpgrades()
 	for upgradeData in availableUpgrades:
-		var displayText: String = "%s - %s (Cost: $%d)" % [upgradeData["name"], upgradeData["description"], upgradeData["cost"]]
-		self.add_item(displayText)
+		var displayText: String = "$%d - %s" % [upgradeData["cost"], upgradeData["name"]]
+		var idx = self.add_item(displayText)
+		self.set_item_metadata(idx, upgradeData)
 
 func _on_item_activated(index: int) -> void:
 	"""What to do when an item is double clicked
 	"""
 	var item_name: String = self.get_item_text(index)
 	print("Activated item: %s" % item_name)
+
+	# TODO: Need to implement the logic, but need to store the ID as part of the metadata
+	# var itemId: String = self.get_item_metadata(index)["name"]
+	# _upgrades.tryPurchase(itemId)
