@@ -43,4 +43,4 @@ func _on_item_activated(index: int) -> void:
 	var success: bool = _upgrades.tryPurchase(upgradeId, _cashManager.get_cash())
 	print("Attempted to purchase upgrade %s, success: %s" % [upgradeId, success])
 	if (success):
-		refreshList()  # Refresh the list to reflect the newly purchased upgrade
+		refreshList() # Refresh the list to reflect the newly purchased upgrade

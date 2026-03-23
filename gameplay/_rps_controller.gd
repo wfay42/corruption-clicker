@@ -46,7 +46,7 @@ func _ready() -> void:
 	self.__computerChoiceNode = countdownNode.get_node("TheirInput")
 	self.__resultNode = countdownNode.get_node("Result")
 
-	self.__rps_nodes = _get_rps_nodes(self)
+	self.__rps_nodes = _get_rps_nodes(self )
 
 	_connect_children(__rps_nodes)
 
@@ -107,7 +107,6 @@ func _on_timer_timeout() -> void:
 	var winner: String = _determine_winner(self.__playerChoice, computerChoice)
 	self.__resultNode.text = winner
 	resolve_winning_outcome(winner)
-
 
 
 func disable_rps_buttons(disabled: bool) -> void:
