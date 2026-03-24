@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=11 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
+[ext_resource type="Texture2D" uid="uid://b50bngcjjdrce" path="res://img/game-bg-mountains.png" id="2_cwvkc"]
 [ext_resource type="Script" uid="uid://c7plne52hia5d" path="res://gameplay/rps_label.gd" id="2_ihdnx"]
 [ext_resource type="Texture2D" uid="uid://brpnu7auiwxcq" path="res://img/game-rock.png" id="2_t1d04"]
 [ext_resource type="Texture2D" uid="uid://hksv2hhx5p08" path="res://img/game-scissors.png" id="4_a03ol"]
@@ -10,42 +11,38 @@
 [ext_resource type="Script" uid="uid://dntmseq78bdw4" path="res://gameplay/cash_label.gd" id="4_rancy"]
 [ext_resource type="Script" uid="uid://bklcx3nx60sf5" path="res://gameplay/upgrade_list.gd" id="6_0mn1v"]
 
-[sub_resource type="Theme" id="Theme_a03ol"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a03ol"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(0.8, 0.8, 0.8, 0)
-
 [node name="RockPaperScissors" type="Node2D"]
 script = ExtResource("1_quvve")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cwvkc")
+
 [node name="Rock" type="Button" parent="."]
 offset_left = 250.0
-offset_top = 300.0
+offset_top = 700.0
 offset_right = 2300.0
-offset_bottom = 2308.0
-scale = Vector2(0.2, 0.2)
-theme = SubResource("Theme_a03ol")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_a03ol")
+offset_bottom = 2708.0
+scale = Vector2(0.18, 0.18)
 icon = ExtResource("2_t1d04")
 script = ExtResource("1_kjh7p")
 
 [node name="Paper" type="Button" parent="."]
 offset_left = 750.0
-offset_top = 300.0
+offset_top = 700.0
 offset_right = 2808.0
-offset_bottom = 2308.0
-scale = Vector2(0.2, 0.2)
-text = "Paper"
+offset_bottom = 2708.0
+scale = Vector2(0.18, 0.18)
 icon = ExtResource("4_p5eu0")
 script = ExtResource("1_kjh7p")
 
 [node name="Scissors" type="Button" parent="."]
 offset_left = 1250.0
-offset_top = 300.0
+offset_top = 700.0
 offset_right = 3258.0
-offset_bottom = 2308.0
-scale = Vector2(0.2, 0.2)
+offset_bottom = 2708.0
+scale = Vector2(0.18, 0.18)
 icon = ExtResource("4_a03ol")
 script = ExtResource("1_kjh7p")
 
