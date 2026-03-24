@@ -6,10 +6,6 @@ const CASH_CHANGED_NAME: String = "cash_changed"
 signal timer_started(timer)
 const TIMER_STARTED_NAME: String = "timer_started"
 
-const PLAYER_NAME: String = "Player"
-const COMPUTER_NAME: String = "Computer"
-const TIE_NAME: String = "Tie"
-
 var __timer: Timer
 var __timer_duration: float
 
@@ -107,6 +103,7 @@ func _on_timer_timeout() -> void:
 	var computerChoiceStr: String = Choices.get_choice_name(computerChoice)
 	__computerChoiceNode.text = computerChoiceStr
 	var winner: String = _determine_winner(self.__playerChoice, computerChoice)
+	self.__resultNode.add_theme_color_override("font_color", Constants.get_player_color(winner))
 	self.__resultNode.text = winner
 	resolve_winning_outcome(winner)
 
@@ -128,18 +125,18 @@ func _decide_computer_choice() -> Choices.RPSChoice:
 func _determine_winner(player_choice: Choices.RPSChoice, computer_choice: Choices.RPSChoice) -> String:
 	var winner: int = Choices.determine_winner(player_choice, computer_choice)
 	if winner == 0:
-		return TIE_NAME
+		return Constants.TIE_NAME
 	elif winner < 0:
-		return PLAYER_NAME
+		return Constants.PLAYER_NAME
 	else:
-		return COMPUTER_NAME
+		return Constants.COMPUTER_NAME
 
 func resolve_winning_outcome(winner: String) -> void:
 	"""
 	Updates the cash value based on the winner of the RPS game
 	"""
 	match winner:
-		PLAYER_NAME:
+		Constants.PLAYER_NAME:
 			add_cash()
 
 	cash_changed.emit(self.__cashManager.get_cash())
