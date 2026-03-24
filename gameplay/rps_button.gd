@@ -8,5 +8,6 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	var rps_type: String = self.text
+	# Essentially uses the unique name of the node, so they must remain the names listed in Constants.gd
+	var rps_type: String = self.name.strip_edges()
 	rps_chosen.emit(rps_type)
