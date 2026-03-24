@@ -29,7 +29,7 @@ var __upgrades: Upgrades
 var __upgradeList: ItemList
 
 func _ready() -> void:
-	self.__timer_duration = 0.1
+	self.__timer_duration = 1.0
 	self.__cashManager = CashManager.new()
 
 	self.__timer = Timer.new()
