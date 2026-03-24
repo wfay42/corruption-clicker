@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cuqjlfslacavm"]
+
+[ext_resource type="StyleBox" uid="uid://d1ie2h6trxero" path="res://styles/rps_button_hover.tres" id="1_mslis"]
+[ext_resource type="StyleBox" uid="uid://d1lpq5pahthum" path="res://styles/rps_button_box.tres" id="2_x2xrm"]
+[ext_resource type="StyleBox" uid="uid://cdfnreog03sm0" path="res://styles/rps_button_pressed.tres" id="3_x2xrm"]
+
+[resource]
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = null
+Button/styles/hover = ExtResource("1_mslis")
+Button/styles/normal = ExtResource("2_x2xrm")
+Button/styles/pressed = ExtResource("3_x2xrm")
