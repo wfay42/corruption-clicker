@@ -7,16 +7,16 @@ Keep track of available upgrades in two Arrays with the same indexing
 """
 
 var _upgrades: Upgrades = null
-var _cashManager: CashManagerView = null
+var _purchaser: Purchaser = null
 
 func _ready() -> void:
 	pass
 
-func setup(upgrades: Upgrades, cashManager: CashManagerView) -> void:
-	"""Initializes the upgrade list with the given Upgrades and CashManagerView
+func setup(upgrades: Upgrades, purchaser: Purchaser) -> void:
+	"""Initializes the upgrade list with the given Upgrades and Purchaser
 	"""
 	_upgrades = upgrades
-	_cashManager = cashManager
+	_purchaser = purchaser
 
 func refreshList() -> void:
 	"""Refreshes the list of upgrades based on the current state of owned upgrades
@@ -41,7 +41,7 @@ func _on_item_activated(index: int) -> void:
 	var upgradeData: Dictionary = self.get_item_metadata(index)
 	var upgradeId: String = upgradeData[Upgrades.ID_KEY]
 
-	var success: bool = _upgrades.tryPurchase(upgradeId, _cashManager.get_cash())
+	var success: bool = _purchaser.purchase_upgrade(upgradeId)
 	print("Attempted to purchase upgrade %s, success: %s" % [upgradeId, success])
 	if (success):
 		refreshList() # Refresh the list to reflect the newly purchased upgrade

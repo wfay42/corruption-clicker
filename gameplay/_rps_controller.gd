@@ -24,6 +24,8 @@ var __cashManager: CashManager
 var __upgrades: Upgrades
 var __upgradeList: ItemList
 
+var __purchaser: Purchaser
+
 func _ready() -> void:
 	self.__timer_duration = 1.0
 	self.__cashManager = CashManager.new()
@@ -53,11 +55,13 @@ func _ready() -> void:
 	cash_changed.connect(self.__cashValueNode._on_cash_changed)
 
 	self.__upgrades = Upgrades.new()
-	self.__upgradeList = self.get_node("Upgrades").get_node("UpgradeList")
-	self.__upgradeList.setup(self.__upgrades, CashManagerView.new(self.__cashManager))
-	self.__upgradeList.refreshList()
 
-	self.__upgrades.upgradePurchased.connect(self.__cashManager.onUpgradePurchased)
+	self.__purchaser = Purchaser.new(self.__cashManager, self.__upgrades)
+	self.__purchaser.upgradePurchased.connect(self.__cashManager.onUpgradePurchased)
+
+	self.__upgradeList = self.get_node("Upgrades").get_node("UpgradeList")
+	self.__upgradeList.setup(self.__upgrades, self.__purchaser)
+	self.__upgradeList.refreshList()
 
 func _connect_children(rps_nodes: Array[Node]) -> void:
 	var controller = self

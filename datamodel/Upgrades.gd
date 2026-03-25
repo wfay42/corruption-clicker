@@ -39,15 +39,13 @@ const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     },
 }
 
-signal upgradePurchased(upgradeId, Upgrades)
-const UPGRADE_PURCHASED_NAME: String = "upgradePurchased"
+static func getUpgrade(upgradeId: String) -> Dictionary:
+    return ALL_UPGRADES.get(upgradeId, null)
 
 var _ownedUpgradeIds: Array[String]
-var _upgradesMutex: Mutex
 
 func _init() -> void:
     _ownedUpgradeIds = []
-    _upgradesMutex = Mutex.new()
 
 func hasUpgrade(upgradeId: String) -> bool:
     return upgradeId in _ownedUpgradeIds
@@ -89,24 +87,22 @@ func isUpgradeAvailable(upgradeId: String) -> bool:
 
     return true
 
-func tryPurchase(upgradeId: String, currentCash: float) -> bool:
-    """ Attempts to purchase the upgrade with the given ID if the player has enough cash
-     Returns true if purchase is successful, false otherwise (e.g. not available or insufficient funds)
-     Note: This function does not handle deducting cash or other side effects, it only updates owned upgrades
+func canPurchase(upgradeId: String, currentCash: float) -> bool:
+    """ Returns true if the upgrade is available and the player has enough cash to purchase it
+     Note: This function does not check for edge cases like invalid upgradeId, it assumes you are passing in a valid upgradeId
     """
-    var upgradeData = ALL_UPGRADES.get(upgradeId, null)
     if not isUpgradeAvailable(upgradeId):
+        return false
+
+    var upgradeData = ALL_UPGRADES.get(upgradeId, null)
+    if upgradeData == null:
         return false
 
     var cost = upgradeData.get(COST_KEY, null)
     if cost == null:
         return false
-    if currentCash < cost:
-        return false
 
-    _upgradesMutex.lock()
+    return currentCash >= cost
+
+func addUpgrade(upgradeId: String) -> void:
     _ownedUpgradeIds.append(upgradeId)
-    _upgradesMutex.unlock()
-
-    upgradePurchased.emit(upgradeId, self )
-    return true

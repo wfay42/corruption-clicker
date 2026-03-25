@@ -15,6 +15,18 @@ func get_cash() -> float:
 func increment() -> void:
 	_cash += _cash_rate
 
+func reduce(amount: float) -> float:
+	"""
+	Reduce the amount of cash, and return the remaining cash.
+	Cash cannot go below 0.0. If the transaction would leave negative cash,
+	the transaction fails and a negative number is returned.
+	"""
+	if amount < _cash:
+		_cash -= amount
+		return _cash
+	else:
+		return -1.0
+
 func onUpgradePurchased(upgradeId: String, upgrades: Upgrades) -> void:
 	var cashRateFromUpgrades: int = upgrades.getOwnedCashPlusUpgradeValue()
 	self._cash_rate = CASH_BASE_VALUE + cashRateFromUpgrades
