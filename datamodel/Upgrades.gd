@@ -2,6 +2,7 @@ class_name Upgrades extends Object
 
 const CASH_PLUS_KEY: String = "cash+"
 const COST_KEY: String = "cost"
+const DEPENDENCIES_KEY: String = "dependencies"
 const DESCRIPTION_KEY: String = "description"
 const ID_KEY: String = "id"
 const NAME_KEY: String = "name"
