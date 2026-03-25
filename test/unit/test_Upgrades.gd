@@ -1,5 +1,7 @@
 extends GutTest
 
+const UPGRADE_TYPE_FIELDS: Array = [Upgrades.CASH_PLUS_KEY]
+
 func create_type_failure_message(upgradeId: String, fieldName: String, expectedType: String, upgrade: Dictionary) -> String:
 	var actualType = get_type_string(upgrade, fieldName)
 	return "Upgrade '%s' has field '%s' of type %s but expected type is %s." % [upgradeId, fieldName, actualType, expectedType]
@@ -13,6 +15,7 @@ func test_ALL_UPGRADES_has_correct_format():
 	"""
 	for upgradeId in Upgrades.ALL_UPGRADES.keys():
 		var upgrade = Upgrades.ALL_UPGRADES[upgradeId]
+		# make assertions about the required fields
 		assert_true(upgrade.has(Upgrades.ID_KEY), "Upgrade is missing 'id' field.")
 		assert_true(upgrade[Upgrades.ID_KEY] is String, \
 			create_type_failure_message(upgradeId, Upgrades.ID_KEY, "String", upgrade))
@@ -32,3 +35,11 @@ func test_ALL_UPGRADES_has_correct_format():
 		assert_true(upgrade.has(Upgrades.DEPENDENCIES_KEY), "Upgrade is missing 'dependencies' field.")
 		assert_true(upgrade[Upgrades.DEPENDENCIES_KEY] is Array, \
 			create_type_failure_message(upgradeId, Upgrades.DEPENDENCIES_KEY, "Array", upgrade))
+
+		# each upgrade needs at least one of the upgrade-type fields
+		var hasUpgradeTypeField = false
+		for upgradeTypeField in UPGRADE_TYPE_FIELDS:
+			if upgrade.has(upgradeTypeField):
+				hasUpgradeTypeField = true
+
+		assert_true(hasUpgradeTypeField, "Upgrade '%s' is missing a valid upgrade-type field." % upgradeId)
