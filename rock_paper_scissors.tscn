@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
@@ -23,52 +23,52 @@ colors = PackedColorArray(0, 0, 0, 0.0784314, 0.59, 0.59, 0.59, 0.0784314)
 frequency = 0.0086
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ac45r"]
-color_ramp = SubResource("Gradient_i7dir")
 noise = SubResource("FastNoiseLite_nkxrc")
+color_ramp = SubResource("Gradient_i7dir")
 
-[node name="RockPaperScissors" type="Node2D"]
+[node name="RockPaperScissors" type="Node2D" unique_id=1369051400]
 script = ExtResource("1_quvve")
 
-[node name="BG Texture" type="TextureRect" parent="."]
+[node name="BG Texture" type="TextureRect" parent="." unique_id=749508484]
 visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_cwvkc")
 
-[node name="BG Darkening" type="ColorRect" parent="."]
+[node name="BG Darkening" type="ColorRect" parent="." unique_id=1597664896]
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.25098)
 
-[node name="BG Black" type="ColorRect" parent="."]
+[node name="BG Black" type="ColorRect" parent="." unique_id=1130242080]
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
-[node name="BG Play Area" type="ColorRect" parent="."]
+[node name="BG Play Area" type="ColorRect" parent="." unique_id=789529317]
 material = SubResource("ShaderMaterial_pilr8")
 offset_right = 1516.0
 offset_bottom = 829.0
 color = Color(0.30498, 0.69, 0.2622, 1)
 
-[node name="Right Panel" type="ColorRect" parent="."]
+[node name="Right Panel" type="ColorRect" parent="." unique_id=434066614]
 offset_left = 1536.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="Bottom Panel" type="ColorRect" parent="."]
+[node name="Bottom Panel" type="ColorRect" parent="." unique_id=1123773956]
 offset_top = 849.0
 offset_right = 1516.0
 offset_bottom = 1080.0
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="NoiseTexture" type="TextureRect" parent="."]
+[node name="NoiseTexture" type="TextureRect" parent="." unique_id=1982315154]
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = SubResource("NoiseTexture2D_ac45r")
 
-[node name="Rock" type="Button" parent="."]
+[node name="Rock" type="Button" parent="." unique_id=642184822]
 offset_left = 443.0
 offset_top = 864.0
 offset_right = 2483.0
@@ -78,7 +78,7 @@ theme = ExtResource("3_pilr8")
 icon = ExtResource("2_t1d04")
 script = ExtResource("1_kjh7p")
 
-[node name="Paper" type="Button" parent="."]
+[node name="Paper" type="Button" parent="." unique_id=1160291554]
 offset_left = 731.0
 offset_top = 864.0
 offset_right = 2789.0
@@ -88,7 +88,7 @@ theme = ExtResource("3_pilr8")
 icon = ExtResource("4_p5eu0")
 script = ExtResource("1_kjh7p")
 
-[node name="Scissors" type="Button" parent="."]
+[node name="Scissors" type="Button" parent="." unique_id=234626190]
 offset_left = 1021.0
 offset_top = 864.0
 offset_right = 3061.0
@@ -98,7 +98,7 @@ theme = ExtResource("3_pilr8")
 icon = ExtResource("4_a03ol")
 script = ExtResource("1_kjh7p")
 
-[node name="Countdown" type="Label" parent="."]
+[node name="Countdown" type="Label" parent="." unique_id=1021503490]
 offset_left = 204.0
 offset_right = 497.0
 offset_bottom = 69.0
@@ -106,7 +106,7 @@ theme = ExtResource("8_pilr8")
 theme_override_font_sizes/font_size = 50
 text = "Countdown:"
 
-[node name="YourInput" type="Label" parent="Countdown"]
+[node name="YourInput" type="Label" parent="Countdown" unique_id=928238669]
 layout_mode = 0
 offset_left = 240.0
 offset_top = 184.0
@@ -115,7 +115,7 @@ offset_bottom = 253.0
 horizontal_alignment = 1
 script = ExtResource("2_ihdnx")
 
-[node name="TheirInput" type="Label" parent="Countdown"]
+[node name="TheirInput" type="Label" parent="Countdown" unique_id=1356778877]
 layout_mode = 0
 offset_left = 715.0
 offset_top = 184.0
@@ -123,7 +123,7 @@ offset_right = 801.0
 offset_bottom = 253.0
 horizontal_alignment = 1
 
-[node name="Result" type="Label" parent="Countdown"]
+[node name="Result" type="Label" parent="Countdown" unique_id=1888720989]
 layout_mode = 0
 offset_left = 218.0
 offset_top = 426.0
@@ -133,7 +133,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 horizontal_alignment = 1
 
-[node name="LabelYourChoice" type="Label" parent="Countdown"]
+[node name="LabelYourChoice" type="Label" parent="Countdown" unique_id=1997902005]
 layout_mode = 0
 offset_left = 158.0
 offset_top = 115.0
@@ -141,7 +141,7 @@ offset_right = 445.0
 offset_bottom = 184.0
 text = "You chose:"
 
-[node name="LabelTheirChoice" type="Label" parent="Countdown"]
+[node name="LabelTheirChoice" type="Label" parent="Countdown" unique_id=476454944]
 layout_mode = 0
 offset_left = 619.0
 offset_top = 115.0
@@ -149,7 +149,7 @@ offset_right = 917.0
 offset_bottom = 184.0
 text = "They chose:"
 
-[node name="LabelWinner" type="Label" parent="Countdown"]
+[node name="LabelWinner" type="Label" parent="Countdown" unique_id=1805630026]
 layout_mode = 0
 offset_left = 377.0
 offset_top = 316.0
@@ -158,7 +158,7 @@ offset_bottom = 426.0
 theme_override_font_sizes/font_size = 80
 text = "Winner:"
 
-[node name="CountdownValue" type="Label" parent="Countdown"]
+[node name="CountdownValue" type="Label" parent="Countdown" unique_id=99460698]
 layout_mode = 0
 offset_left = 101.0
 offset_top = 46.0
@@ -166,7 +166,7 @@ offset_right = 141.0
 offset_bottom = 115.0
 script = ExtResource("4_oyv7v")
 
-[node name="Cash" type="Label" parent="."]
+[node name="Cash" type="Label" parent="." unique_id=1805275263]
 offset_left = 1544.0
 offset_top = 17.0
 offset_right = 1805.0
@@ -175,7 +175,7 @@ theme = ExtResource("8_pilr8")
 theme_override_font_sizes/font_size = 100
 text = "Cash"
 
-[node name="CashValue" type="Label" parent="Cash"]
+[node name="CashValue" type="Label" parent="Cash" unique_id=1844072955]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 137.0
@@ -184,14 +184,14 @@ offset_bottom = 206.0
 text = "0"
 script = ExtResource("4_rancy")
 
-[node name="DollarSignLabel" type="Label" parent="Cash"]
+[node name="DollarSignLabel" type="Label" parent="Cash" unique_id=957627565]
 layout_mode = 0
 offset_top = 137.0
 offset_right = 40.0
 offset_bottom = 206.0
 text = "$"
 
-[node name="Upgrades" type="Label" parent="."]
+[node name="Upgrades" type="Label" parent="." unique_id=800170685]
 offset_left = 1536.0
 offset_top = 489.0
 offset_right = 1767.0
@@ -199,7 +199,7 @@ offset_bottom = 558.0
 theme = ExtResource("8_pilr8")
 text = "Upgrades"
 
-[node name="UpgradeList" type="ItemList" parent="Upgrades"]
+[node name="UpgradeList" type="ItemList" parent="Upgrades" unique_id=2123772894]
 layout_mode = 0
 offset_top = 69.0
 offset_right = 384.0
