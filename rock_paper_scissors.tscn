@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=18 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dntmseq78bdw4" path="res://gameplay/cash_label.gd" id="4_rancy"]
 [ext_resource type="Script" uid="uid://bklcx3nx60sf5" path="res://gameplay/upgrade_list.gd" id="6_0mn1v"]
 [ext_resource type="Theme" uid="uid://cgyodec8l4gy1" path="res://themes/label_50px_font.tres" id="8_pilr8"]
+[ext_resource type="Theme" uid="uid://b2nsbwvtk33lr" path="res://themes/item_list_theme.tres" id="12_i7dir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pilr8"]
 
@@ -203,7 +204,7 @@ layout_mode = 0
 offset_top = 69.0
 offset_right = 384.0
 offset_bottom = 228.0
-theme_override_font_sizes/font_size = 25
+theme = ExtResource("12_i7dir")
 allow_search = false
 item_count = 2
 item_0/text = "Option 1"

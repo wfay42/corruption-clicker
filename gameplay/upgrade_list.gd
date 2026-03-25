@@ -30,6 +30,7 @@ func refreshList() -> void:
 		var displayText: String = "$%d - %s" % [upgradeData[Upgrades.COST_KEY], upgradeData[Upgrades.NAME_KEY]]
 		var idx = self.add_item(displayText)
 		self.set_item_metadata(idx, upgradeData)
+		self.set_item_tooltip(idx, upgradeData[Upgrades.DESCRIPTION_KEY])
 
 func _on_item_activated(index: int) -> void:
 	"""What to do when an item is double clicked

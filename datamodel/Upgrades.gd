@@ -2,15 +2,19 @@ class_name Upgrades extends Object
 
 const CASH_PLUS_KEY: String = "cash+"
 const COST_KEY: String = "cost"
-const NAME_KEY: String = "name"
+const DESCRIPTION_KEY: String = "description"
 const ID_KEY: String = "id"
+const NAME_KEY: String = "name"
 
-
+"""
+Future ideas:
+    - Kind of unfortunate that I have "id" in two places. Would love to consolidate that
+"""
 const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     "cash001": {
         "id": "cash001",
         "name": "Cash Prize Lv. 1",
-        "description": "Increase cash prize by 1",
+        "description": "Increase cash reward by 1 per victory",
         "cost": 3,
         "cash+": 1,
         "dependencies": []
@@ -18,7 +22,7 @@ const ALL_UPGRADES: Dictionary[String, Dictionary] = {
     "cash002": {
         "id": "cash002",
         "name": "Cash Prize Lv. 2",
-        "description": "Increase cash prize by 5",
+        "description": "Increase cash reward by 5 per victory",
         "cost": 200,
         "cash+": 5,
         "dependencies": ["cash001"]
