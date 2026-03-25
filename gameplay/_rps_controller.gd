@@ -1,8 +1,5 @@
 extends Node
 
-signal cash_changed(cash_value)
-const CASH_CHANGED_NAME: String = "cash_changed"
-
 signal timer_started(timer)
 const TIMER_STARTED_NAME: String = "timer_started"
 
@@ -52,7 +49,7 @@ func _ready() -> void:
 	timer_started.connect(self.__countdownLabel._on_timer_started)
 
 	self.__cashValueNode = self.get_node("Cash").get_node("CashValue")
-	cash_changed.connect(self.__cashValueNode._on_cash_changed)
+	self.__cashManager.cash_changed.connect(self.__cashValueNode._on_cash_changed)
 
 	self.__upgrades = Upgrades.new()
 
@@ -142,8 +139,6 @@ func resolve_winning_outcome(winner: String) -> void:
 	match winner:
 		Constants.PLAYER_NAME:
 			add_cash()
-
-	cash_changed.emit(self.__cashManager.get_cash())
 
 
 func add_cash() -> void:
