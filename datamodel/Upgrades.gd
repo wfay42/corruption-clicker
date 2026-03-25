@@ -2,6 +2,7 @@ class_name Upgrades extends Object
 
 const CASH_PLUS_KEY: String = "cash+"
 const COST_KEY: String = "cost"
+const COOLDOWN_MINUS_KEY: String = "cooldown-"
 const DEPENDENCIES_KEY: String = "dependencies"
 const DESCRIPTION_KEY: String = "description"
 const ID_KEY: String = "id"
@@ -27,6 +28,14 @@ const ALL_UPGRADES: Dictionary[String, Dictionary] = {
         "cost": 200,
         "cash+": 5,
         "dependencies": ["cash001"]
+    },
+    "cooldown001": {
+        "id": "cooldown001",
+        "name": "Cooldown Reduction Lv. 1",
+        "description": "Reduce cooldown by 0.5 seconds",
+        "cost": 10,
+        "cooldown-": 0.5,
+        "dependencies": []
     },
 }
 

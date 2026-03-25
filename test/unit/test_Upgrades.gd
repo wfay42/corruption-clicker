@@ -1,6 +1,6 @@
 extends GutTest
 
-const UPGRADE_TYPE_FIELDS: Array = [Upgrades.CASH_PLUS_KEY]
+const UPGRADE_TYPE_FIELDS: Array = [Upgrades.CASH_PLUS_KEY, Upgrades.COOLDOWN_MINUS_KEY]
 
 func create_type_failure_message(upgradeId: String, fieldName: String, expectedType: String, upgrade: Dictionary) -> String:
 	var actualType = get_type_string(upgrade, fieldName)
