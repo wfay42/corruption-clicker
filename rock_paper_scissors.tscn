@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc0jrijurxsj2"]
+[gd_scene load_steps=17 format=3 uid="uid://dc0jrijurxsj2"]
 
 [ext_resource type="Script" uid="uid://dkf6hnkyj0xis" path="res://gameplay/rps_button.gd" id="1_kjh7p"]
 [ext_resource type="Script" uid="uid://dgl6jk3gey5ra" path="res://gameplay/_rps_controller.gd" id="1_quvve"]
@@ -12,6 +12,18 @@
 [ext_resource type="Script" uid="uid://dntmseq78bdw4" path="res://gameplay/cash_label.gd" id="4_rancy"]
 [ext_resource type="Script" uid="uid://bklcx3nx60sf5" path="res://gameplay/upgrade_list.gd" id="6_0mn1v"]
 [ext_resource type="Theme" uid="uid://cgyodec8l4gy1" path="res://themes/label_50px_font.tres" id="8_pilr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pilr8"]
+
+[sub_resource type="Gradient" id="Gradient_i7dir"]
+colors = PackedColorArray(0, 0, 0, 0.0784314, 0.59, 0.59, 0.59, 0.0784314)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nkxrc"]
+frequency = 0.0086
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ac45r"]
+color_ramp = SubResource("Gradient_i7dir")
+noise = SubResource("FastNoiseLite_nkxrc")
 
 [node name="RockPaperScissors" type="Node2D"]
 script = ExtResource("1_quvve")
@@ -33,6 +45,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="BG Play Area" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pilr8")
 offset_right = 1516.0
 offset_bottom = 829.0
 color = Color(0.30498, 0.69, 0.2622, 1)
@@ -48,6 +61,11 @@ offset_top = 849.0
 offset_right = 1536.0
 offset_bottom = 1080.0
 color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="NoiseTexture" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("NoiseTexture2D_ac45r")
 
 [node name="Rock" type="Button" parent="."]
 offset_left = 443.0
@@ -106,10 +124,12 @@ horizontal_alignment = 1
 
 [node name="Result" type="Label" parent="Countdown"]
 layout_mode = 0
-offset_left = 470.0
+offset_left = 218.0
 offset_top = 426.0
-offset_right = 587.0
+offset_right = 850.0
 offset_bottom = 495.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 horizontal_alignment = 1
 
 [node name="LabelYourChoice" type="Label" parent="Countdown"]
